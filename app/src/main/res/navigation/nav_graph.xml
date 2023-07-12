@@ -11,31 +11,28 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_add_AccountFragment"
-            app:destination="@id/add_AccountFragment" />
+            android:id="@+id/action_home_to_add_account"
+            app:destination="@id/add_accountFragment" />
     </fragment>
     <fragment
-        android:id="@+id/calendarFragment"
-        android:name="gumegumeCompany.gumegume_account_book.Fragment.CalendarFragment"
-        android:label="fragment_calendar"
-        tools:layout="@layout/fragment_calendar" />
+        android:id="@+id/statsFragment"
+        android:name="gumegumeCompany.gumegume_account_book.Fragment.StatsFragment"
+        android:label="fragment_stats"
+        tools:layout="@layout/fragment_stats" />
     <fragment
-        android:id="@+id/settingFragment"
-        android:name="gumegumeCompany.gumegume_account_book.Fragment.SettingFragment"
-        android:label="fragment_setting"
-        tools:layout="@layout/fragment_setting" />
+        android:id="@+id/settingsFragment"
+        android:name="gumegumeCompany.gumegume_account_book.Fragment.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+
     <fragment
-        android:id="@+id/add_AccountFragment"
-        android:name="gumegumeCompany.gumegume_account_book.Fragment.Add_AccountFragment"
-        android:label="fragment_add__account"
-        tools:layout="@layout/fragment_add__account" >
+        android:id="@+id/add_accountFragment"
+        android:name="gumegumeCompany.gumegume_account_book.Fragment.AddAccountFragment"
+        android:label="fragment_add_account"
+        tools:layout="@layout/fragment_add_account" >
         <action
-            android:id="@+id/action_add_AccountFragment_to_homeFragment"
+            android:id="@+id/action_add_account_to_home"
             app:destination="@id/homeFragment"
-            app:popUpTo="@id/nav_graph" />
-        <action
-            android:id="@+id/action_add_AccountFragment_to_calendarFragment"
-            app:destination="@id/calendarFragment"
-            app:popUpTo="@id/calendarFragment" />
+            app:popUpTo="@id/homeFragment" />
     </fragment>
 </navigation>
