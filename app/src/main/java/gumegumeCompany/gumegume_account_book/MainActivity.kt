@@ -16,19 +16,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        // WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         onSetUpNavigation()
-
-        binding.add.setOnClickListener { view ->
-            Snackbar.make(view, "아직 추가하지 않은 기능입니다", Snackbar.LENGTH_LONG)
-                .setAnchorView(R.id.add)
-                .setAction("Action", null).show()
-        }
     }
 
     private fun onSetUpNavigation() {

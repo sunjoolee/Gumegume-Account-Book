@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import gumegumeCompany.gumegume_account_book.R
 import gumegumeCompany.gumegume_account_book.databinding.FragmentHomeBinding
 
@@ -24,6 +25,15 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
         // Inflate the layout for this fragment
+
+        binding.add.setOnClickListener { view ->
+            /*Snackbar.make(view, "아직 추가하지 않은 기능입니다", Snackbar.LENGTH_LONG)
+                .setAnchorView(R.id.add)
+                .setAction("Action", null).show()*/
+
+            view?.findNavController()?.navigate(R.id.action_homeFragment_to_add_AccountFragment).run {
+            }
+        }
         return view
     }
 

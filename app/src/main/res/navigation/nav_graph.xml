@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="gumegumeCompany.gumegume_account_book.Fragment.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_add_AccountFragment"
+            app:destination="@id/add_AccountFragment" />
+    </fragment>
     <fragment
         android:id="@+id/calendarFragment"
         android:name="gumegumeCompany.gumegume_account_book.Fragment.CalendarFragment"
@@ -20,4 +24,18 @@
         android:name="gumegumeCompany.gumegume_account_book.Fragment.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/add_AccountFragment"
+        android:name="gumegumeCompany.gumegume_account_book.Fragment.Add_AccountFragment"
+        android:label="fragment_add__account"
+        tools:layout="@layout/fragment_add__account" >
+        <action
+            android:id="@+id/action_add_AccountFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/nav_graph" />
+        <action
+            android:id="@+id/action_add_AccountFragment_to_calendarFragment"
+            app:destination="@id/calendarFragment"
+            app:popUpTo="@id/calendarFragment" />
+    </fragment>
 </navigation>
