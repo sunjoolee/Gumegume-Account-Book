@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="unabletetxt">#D2D1D4</color>
+
+
+    <color name="papayawhip">#FFFFEFD5</color>
+    <color name="linen">#FFFAF0E6</color>
+    <color name="oldlace">#FFFDF5E6</color>
+</resources>
