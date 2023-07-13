@@ -21,8 +21,10 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
-        android:layout_width="match_parent"
+       android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:itemTextAppearanceActive="@style/menu_item_font"
+        app:itemTextAppearanceInactive="@style/menu_item_font"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         app:itemIconTint="@color/selector_btm_nav"
