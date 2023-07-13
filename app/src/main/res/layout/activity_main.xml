@@ -25,7 +25,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="#fff"
         app:itemIconTint="@color/selector_btm_nav"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu"

@@ -52,6 +52,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     // 카카오 로그인
-    implementation "com.kakao.sdk:v2-user:2.8.5"
-    implementation "com.kakao.sdk:v2-talk:2.8.5" // 친구, 메시지(카카오톡)
+    implementation 'com.kakao.sdk:v2-user:2.8.5'
+    implementation 'com.kakao.sdk:v2-talk:2.8.5' // 친구, 메시지(카카오톡)
+
+    //데이터 그래픽 표현 (바 차트, 파이 차트, ...)
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }
