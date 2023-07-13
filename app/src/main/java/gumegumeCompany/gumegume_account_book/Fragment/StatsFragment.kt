@@ -48,8 +48,8 @@ class StatsFragment : Fragment() {
         sample_entries.add(PieEntry(15000f, "선물"))
         sample_entries.add(PieEntry(12000f, "기타"))
 
-        val sample_pieDataSet : PieDataSet = PieDataSet(sample_entries, "통계 정보")
-        sample_pieDataSet.apply {
+        val sample_pieDataSet : PieDataSet =
+            PieDataSet(sample_entries, "통계 정보").apply {
             colors = pie_chart_colors
             valueTextColor = BLACK
             valueTextSize = 10F
@@ -62,8 +62,7 @@ class StatsFragment : Fragment() {
             centerText="7월 통계"
             //setCenterTextTypeface(Typeface.createFromAsset(requireActivity().assets, "font/humanbumsuk.ttf"))
             //description.typeface = Typeface.createFromAsset(requireActivity().assets, "font/humanbumsuk.ttf")
-        }
-        binding.pieChart.animate()
+        }.animate()
 
         return view
     }
