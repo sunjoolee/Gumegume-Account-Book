@@ -3,10 +3,17 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="unabletetxt">#D2D1D4</color>
-
+    <color name="unabletext">#D2D1D4</color>
 
     <color name="papayawhip">#FFFFEFD5</color>
     <color name="linen">#FFFAF0E6</color>
     <color name="oldlace">#FFFDF5E6</color>
+
+    <color name="pastel_rainbow1">#FF9AA2</color>
+    <color name="pastel_rainbow2">#FFB7B2</color>
+    <color name="pastel_rainbow3">#FFDAC1</color>
+    <color name="pastel_rainbow4">#E2F0CB</color>
+    <color name="pastel_rainbow5">#B5EAD7</color>
+    <color name="pastel_rainbow6">#C7CEEA</color>
+    <color name="pastel_rainbow7">#F3DDF2</color>
 </resources>

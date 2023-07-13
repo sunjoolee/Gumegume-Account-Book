@@ -6,16 +6,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.HomeFragment">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="홈(달력) 화면 입니다"
+        android:textSize="30dp"
+        android:gravity="center"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add"
+        android:id="@+id/add_account_floating_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="36dp"
         android:backgroundTint="@color/white"
-        app:srcCompat="@drawable/add_button_three"
+        app:srcCompat="@drawable/square_plus_48"
         app:rippleColor="@color/linen"/>
 
 </RelativeLayout>

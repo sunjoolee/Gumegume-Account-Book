@@ -15,7 +15,6 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -24,14 +23,9 @@ class HomeFragment : Fragment() {
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
-        // Inflate the layout for this fragment
 
-        binding.add.setOnClickListener { view ->
-            /*Snackbar.make(view, "아직 추가하지 않은 기능입니다", Snackbar.LENGTH_LONG)
-                .setAnchorView(R.id.add)
-                .setAction("Action", null).show()*/
-
-            view?.findNavController()?.navigate(R.id.action_homeFragment_to_add_AccountFragment).run {
+        binding.addAccountFloatingBtn.setOnClickListener { view ->
+            view?.findNavController()?.navigate(R.id.action_home_to_add_account).run {
             }
         }
         return view

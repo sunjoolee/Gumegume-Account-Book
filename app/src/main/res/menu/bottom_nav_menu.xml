@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/calendarFragment"
-        android:icon="@drawable/bottom_calendar"
+        android:id="@+id/statsFragment"
         android:enabled="true"
-        android:title="달력"/>
+        android:icon="@drawable/file_chart_pie_48"
+        android:title="통계"
+        />
 
     <item
         android:id="@+id/homeFragment"
-        android:icon="@drawable/bottom_home"
         android:enabled="true"
-        android:title="홈"/>
+        android:icon="@drawable/calendar_pen_48"
+        android:title="달력" />
 
     <item
-        android:id="@+id/myFragment"
-        android:icon="@drawable/bottom_my"
+        android:id="@+id/settingsFragment"
         android:enabled="true"
-        android:title="마이페이지"/>
+        android:icon="@drawable/user_gear_48"
+        android:title="설정" />
 </menu>
