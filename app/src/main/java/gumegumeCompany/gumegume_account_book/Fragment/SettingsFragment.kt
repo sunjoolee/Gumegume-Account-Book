@@ -9,7 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isGone
+import androidx.navigation.findNavController
 import com.kakao.sdk.user.UserApiClient
+import gumegumeCompany.gumegume_account_book.LoginActivity
+import gumegumeCompany.gumegume_account_book.MainActivity
 import gumegumeCompany.gumegume_account_book.R
 import gumegumeCompany.gumegume_account_book.databinding.FragmentSettingsBinding
 
@@ -42,14 +45,33 @@ class SettingsFragment : Fragment() {
             }
             else if (user != null) {
                 Log.i(TAG, "사용자 정보 요청 성공")
-                userName = user.kakaoAccount?.name.toString()
+//                userName = user.kakaoAccount?.profile?.nickname.toString()
+                binding.run {
+                    profileUserName.text = "${user.kakaoAccount?.profile?.nickname}"
+
+                    when(user.kakaoAccount?.gender.toString()){
+                        "FEMALE" -> {
+                            profileUserGender.setImageDrawable(resources.getDrawable(R.drawable.venus_18))
+                        }
+                        "MALE" -> {
+                            profileUserGender.setImageDrawable(resources.getDrawable(R.drawable.mars_18))
+                        }
+                        else -> {
+                            profileUserGender.setImageDrawable(resources.getDrawable(R.drawable.money_18))
+                        }
+                    }
+
+                    profileUserBirth.text = "=${user?.kakaoAccount?.birthday}"
+
+                }
                 userGender = user.kakaoAccount?.gender.toString()
                 userBirthYear = user.kakaoAccount?.birthyear.toString()
                 userBirthDate = user.kakaoAccount?.legalBirthDate.toString()
+
             }
         }
-        binding.profileUserName.text = resources.getString(R.string.user_name, userName)
-        binding.profileUserGender.apply{
+//        binding.profileUserName.text = resources.getString(R.string.user_name, userName)
+/*        binding.profileUserGender.apply{
             when(userGender){
                 "unKnown" -> isGone = true
                 "male" -> { isGone = false
@@ -57,8 +79,8 @@ class SettingsFragment : Fragment() {
                 "female" -> { isGone = false
                     setImageDrawable(resources.getDrawable(R.drawable.venus_18)) }
             }
-        }
-        binding.profileUserBirth.text = resources.getString(R.string.user_birth, userBirthYear, userBirthDate)
+        }*/
+//        binding.profileUserBirth.text = resources.getString(R.string.user_birth, userBirthYear, userBirthDate)
 
         binding.logoutBtn.setOnClickListener {
             UserApiClient.instance.logout { error ->
@@ -66,7 +88,14 @@ class SettingsFragment : Fragment() {
                     Log.e(TAG, "로그아웃 실패. SDK에서 토큰 삭제됨", error)
                 }
                 else {
-                    Log.i(TAG, "로그아웃 성공. SDK에서 토큰 삭제됨")
+                    activity?.let{
+                        Log.i(TAG, "로그아웃 성공. SDK에서 토큰 삭제됨")
+                        val intent = Intent(context, LoginActivity::class.java)
+                        startActivity(intent)
+                    }
+                    /*Log.i(TAG, "로그아웃 성공. SDK에서 토큰 삭제됨")
+                    view?.findNavController()?.navigate(R.id.action_settingsFragment_to_loginActivity).run {
+                    }*/
                 }
             }
         }
