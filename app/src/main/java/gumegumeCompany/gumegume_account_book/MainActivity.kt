@@ -10,6 +10,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import gumegumeCompany.gumegume_account_book.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -38,10 +39,13 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainer) as NavHostFragment
         val navController = navHostFragment.navController
-
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-
+        binding.bottomNav.apply {
+            setupWithNavController(navController)
+            setOnItemSelectedListener { item ->
+                NavigationUI.onNavDestinationSelected(item,navController)
+                navController.popBackStack(item.itemId, inclusive = false)
+                true
+            }
         }
-        NavigationUI.setupWithNavController(binding.bottomNav, navController)
     }
 }
