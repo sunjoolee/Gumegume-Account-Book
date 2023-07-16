@@ -16,6 +16,16 @@ import gumegumeCompany.gumegume_account_book.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
+    companion object{
+        var categoryColorIds = arrayListOf(
+            R.color.pastel_rainbow1, //월급&용돈
+            R.color.pastel_rainbow2, //고정지출
+            R.color.pastel_rainbow3, //식비
+            R.color.pastel_rainbow4, //교통비
+            R.color.pastel_rainbow5, //생필품
+            R.color.pastel_rainbow6, //선물
+            R.color.pastel_rainbow7) //기타
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
