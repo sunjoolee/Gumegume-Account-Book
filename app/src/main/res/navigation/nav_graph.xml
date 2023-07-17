@@ -26,11 +26,6 @@
         android:name="gumegumeCompany.gumegume_account_book.Fragment.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" >
-        <action
-            android:id="@+id/action_settingsFragment_to_loginActivity"
-            app:destination="@id/loginActivity"
-            app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -42,17 +37,5 @@
             android:id="@+id/action_add_account_to_home"
             app:destination="@id/homeFragment"
             app:popUpTo="@id/homeFragment" />
-<!--        <action-->
-<!--            android:id="@+id/action_add_accountFragment_to_statsFragment"-->
-<!--            app:destination="@id/statsFragment" />-->
-<!--        <action-->
-<!--            android:id="@+id/action_add_accountFragment_to_settingsFragment"-->
-<!--            app:destination="@id/settingsFragment" />-->
     </fragment>
-
-    <activity
-        android:id="@+id/loginActivity"
-        android:name="gumegumeCompany.gumegume_account_book.LoginActivity"
-        android:label="activity_login"
-        tools:layout="@layout/activity_login" />
 </navigation>

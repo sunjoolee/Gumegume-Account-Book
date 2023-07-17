@@ -1,6 +1,7 @@
 package gumegumeCompany.gumegume_account_book.Fragment
 
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -50,19 +51,11 @@ class SettingsFragment : Fragment() {
                     profileUserName.text = "${user.kakaoAccount?.profile?.nickname}"
 
                     when(user.kakaoAccount?.gender.toString()){
-                        "FEMALE" -> {
-                            profileUserGender.setImageDrawable(resources.getDrawable(R.drawable.venus_18))
-                        }
-                        "MALE" -> {
-                            profileUserGender.setImageDrawable(resources.getDrawable(R.drawable.mars_18))
-                        }
-                        else -> {
-                            profileUserGender.setImageDrawable(resources.getDrawable(R.drawable.money_18))
-                        }
+                        "FEMALE" -> profileUserGender.setImageDrawable(resources.getDrawable(R.drawable.venus_18))
+                        "MALE" -> profileUserGender.setImageDrawable(resources.getDrawable(R.drawable.mars_18))
+                        else -> profileUserGender.setImageDrawable(resources.getDrawable(R.drawable.money_18))
                     }
-
                     profileUserBirth.text = "=${user?.kakaoAccount?.birthday}"
-
                 }
                 userGender = user.kakaoAccount?.gender.toString()
                 userBirthYear = user.kakaoAccount?.birthyear.toString()
@@ -83,21 +76,24 @@ class SettingsFragment : Fragment() {
 //        binding.profileUserBirth.text = resources.getString(R.string.user_birth, userBirthYear, userBirthDate)
 
         binding.logoutBtn.setOnClickListener {
-            UserApiClient.instance.logout { error ->
-                if (error != null) {
-                    Log.e(TAG, "로그아웃 실패. SDK에서 토큰 삭제됨", error)
-                }
-                else {
-                    activity?.let{
-                        Log.i(TAG, "로그아웃 성공. SDK에서 토큰 삭제됨")
-                        val intent = Intent(context, LoginActivity::class.java)
-                        startActivity(intent)
-                    }
-                    /*Log.i(TAG, "로그아웃 성공. SDK에서 토큰 삭제됨")
-                    view?.findNavController()?.navigate(R.id.action_settingsFragment_to_loginActivity).run {
-                    }*/
-                }
-            }
+//            UserApiClient.instance.logout { error ->
+//                if (error != null) {
+//                    Log.e(TAG, "로그아웃 실패. SDK에서 토큰 삭제됨", error)
+//                }
+//                else {
+//                    activity?.let{
+//                        Log.i(TAG, "로그아웃 성공. SDK에서 토큰 삭제됨")
+//                        val intent = Intent(context, LoginActivity::class.java)
+//                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                        startActivity(intent)
+//                    }
+//                }
+//            }
+
+            //!!!!!!!!로그아웃 생략 - 테스트 용 코드
+            val intent = Intent(context, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
         }
 
         //문의하기

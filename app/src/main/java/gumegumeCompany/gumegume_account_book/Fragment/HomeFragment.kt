@@ -25,8 +25,7 @@ class HomeFragment : Fragment() {
         val view = binding.root
 
         binding.addAccountFloatingBtn.setOnClickListener { view ->
-            view?.findNavController()?.navigate(R.id.action_home_to_add_account).run {
-            }
+            view?.findNavController()?.navigate(R.id.action_home_to_add_account)
         }
         return view
     }
