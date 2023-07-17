@@ -1,26 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
     tools:context=".Fragment.AddAccountFragment">
 
-    <LinearLayout
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/account_date_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:fontFamily="@font/humanbumsuk"
+        android:text="0000/00/00"
+        android:background="@color/white"
+        app:layout_constraintEnd_toStartOf="@id/income_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/income_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:fontFamily="@font/humanbumsuk"
+        android:text="수입"
+        app:layout_constraintEnd_toStartOf="@+id/expenses_btn"
+        app:layout_constraintStart_toEndOf="@id/account_date_btn"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/expenses_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:fontFamily="@font/humanbumsuk"
+        android:text="지출"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/income_btn"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/select_category_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/income_btn">
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/salary_select_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="수입"
-            android:fontFamily="@font/humanbumsuk"/>
+            android:background="@color/white"
+            android:fontFamily="@font/humanbumsuk"
+            android:text="@string/salary" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/allowance_select_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:fontFamily="@font/humanbumsuk"
+            android:text="@string/allowance" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/fixed_expenses_select_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:fontFamily="@font/humanbumsuk"
+            android:text="@string/fixed_expenses" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/food_select_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:fontFamily="@font/humanbumsuk"
+            android:text="@string/food" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/transport_select_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:fontFamily="@font/humanbumsuk"
+            android:text="@string/transport" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/daily_necessity_select_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:fontFamily="@font/humanbumsuk"
+            android:text="@string/daily_necessity" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/gift_select_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:fontFamily="@font/humanbumsuk"
+            android:text="@string/gift" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/etc_select_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:fontFamily="@font/humanbumsuk"
+            android:text="@string/etc" />
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/account_title_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/humanbumsuk"
+        android:text="@string/account_title"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/select_category_layout" />
+
+    <EditText
+        android:id="@+id/account_memo_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/humanbumsuk"
+        android:text="@string/account_memo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/account_title_edittext" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/cancel_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:fontFamily="@font/humanbumsuk"
+        android:text="@string/cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/add_btn"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/add_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:fontFamily="@font/humanbumsuk"
+        android:text="@string/add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cancel_btn" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
