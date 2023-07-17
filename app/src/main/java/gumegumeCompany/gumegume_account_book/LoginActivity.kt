@@ -58,22 +58,16 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-//        activityLoginBinding.kakaoLoginBtn.setOnClickListener {
-//            UserApiClient.instance.run {
-//                if(isKakaoTalkLoginAvailable(this@LoginActivity)){
-//                    loginWithKakaoTalk(this@LoginActivity, callback = callback)
-//                } else {
-//                    loginWithKakaoAccount(this@LoginActivity, callback = callback)
-//                }
-//            }
-//        }
-        
-        //!!!!!!!!로그인 생략 - 테스트 용 코드
         activityLoginBinding.kakaoLoginBtn.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
+            UserApiClient.instance.run {
+                if(isKakaoTalkLoginAvailable(this@LoginActivity)){
+                    loginWithKakaoTalk(this@LoginActivity, callback = callback)
+                } else {
+                    loginWithKakaoAccount(this@LoginActivity, callback = callback)
+                }
+            }
         }
+
     }
 
     // 토큰 정보 확인
