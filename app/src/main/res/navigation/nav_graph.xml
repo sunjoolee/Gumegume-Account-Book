@@ -14,11 +14,13 @@
             android:id="@+id/action_home_to_add_account"
             app:destination="@id/add_accountFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/statsFragment"
         android:name="gumegumeCompany.gumegume_account_book.Fragment.StatsFragment"
         android:label="fragment_stats"
         tools:layout="@layout/fragment_stats" />
+
     <fragment
         android:id="@+id/settingsFragment"
         android:name="gumegumeCompany.gumegume_account_book.Fragment.SettingsFragment"
@@ -40,13 +42,14 @@
             android:id="@+id/action_add_account_to_home"
             app:destination="@id/homeFragment"
             app:popUpTo="@id/homeFragment" />
-        <action
-            android:id="@+id/action_add_accountFragment_to_statsFragment"
-            app:destination="@id/statsFragment" />
-        <action
-            android:id="@+id/action_add_accountFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+<!--        <action-->
+<!--            android:id="@+id/action_add_accountFragment_to_statsFragment"-->
+<!--            app:destination="@id/statsFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_add_accountFragment_to_settingsFragment"-->
+<!--            app:destination="@id/settingsFragment" />-->
     </fragment>
+
     <activity
         android:id="@+id/loginActivity"
         android:name="gumegumeCompany.gumegume_account_book.LoginActivity"

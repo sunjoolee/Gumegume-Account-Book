@@ -61,4 +61,21 @@
     <string name="contact_via_email">이메일로 문의하기</string>
     <string name="contact_title">구메구메 가계부 문의</string>
     <string name="contact_body">구메구메 가계부 문의 내용: </string>
+
+    <!-- add account -->
+    <string name="account_title">내역 이름</string>
+    <string name="account_memo">내역 설명</string>
+    <string name="add">추가</string>
+    <string name="cancel">취소</string>
+
+    <!-- account type -->
+    <string name="salary">월급</string>
+    <string name="allowance">용돈</string>
+    <string name="fixed_expenses">고정지출</string>
+    <string name="food">식비</string>
+    <string name="transport">교통비</string>
+    <string name="daily_necessity">생필품</string>
+    <string name="gift">선물</string>
+    <string name="etc">기타</string>
+
 </resources>
