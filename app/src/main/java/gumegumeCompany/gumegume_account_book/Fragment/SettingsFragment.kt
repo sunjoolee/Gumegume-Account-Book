@@ -43,6 +43,7 @@ class SettingsFragment : Fragment() {
         var userGender: String = "unKnown"
         var userBirthYear: String = "0000";
         var userBirthDate: String = "00/00";
+
         UserApiClient.instance.me { user, error ->
             if (error != null) {
                 Log.e(TAG, "사용자 정보 요청 실패", error)

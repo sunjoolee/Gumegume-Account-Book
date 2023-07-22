@@ -1,161 +1,288 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".Fragment.AddAccountFragment">
+    android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/account_date_btn"
+    <TextView
+        android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="68dp"
+        android:fontFamily="@font/humanbumsuk"
+        android:text="날짜"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/accountDateBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:background="@drawable/add_money_background_stroke"
         android:fontFamily="@font/humanbumsuk"
         android:text="0000/00/00"
-        android:background="@color/white"
-        app:layout_constraintEnd_toStartOf="@id/income_btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/text"
+        app:layout_constraintStart_toEndOf="@+id/text"
+        app:layout_constraintTop_toTopOf="@+id/text"
+        app:layout_constraintVertical_bias="0.578" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/income_btn"
+        android:id="@+id/incomeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/add_money_background_stroke"
         android:fontFamily="@font/humanbumsuk"
         android:text="수입"
-        app:layout_constraintEnd_toStartOf="@+id/expenses_btn"
-        app:layout_constraintStart_toEndOf="@id/account_date_btn"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@+id/text"
+        app:layout_constraintTop_toBottomOf="@+id/text" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/expenses_btn"
+        android:id="@+id/expensesBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/add_money_background_stroke"
         android:fontFamily="@font/humanbumsuk"
         android:text="지출"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/income_btn"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/select_category_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/income_btn">
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/incomeBtn"
+        app:layout_constraintStart_toEndOf="@+id/incomeBtn"
+        app:layout_constraintTop_toTopOf="@+id/incomeBtn"
+        app:layout_constraintVertical_bias="0.0" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/salary_select_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:fontFamily="@font/humanbumsuk"
-            android:text="@string/salary" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/allowance_select_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:fontFamily="@font/humanbumsuk"
-            android:text="@string/allowance" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/fixed_expenses_select_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:fontFamily="@font/humanbumsuk"
-            android:text="@string/fixed_expenses" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/food_select_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:fontFamily="@font/humanbumsuk"
-            android:text="@string/food" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/transport_select_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:fontFamily="@font/humanbumsuk"
-            android:text="@string/transport" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/daily_necessity_select_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:fontFamily="@font/humanbumsuk"
-            android:text="@string/daily_necessity" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/gift_select_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:fontFamily="@font/humanbumsuk"
-            android:text="@string/gift" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/etc_select_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:fontFamily="@font/humanbumsuk"
-            android:text="@string/etc" />
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/account_title_edittext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/humanbumsuk"
-        android:text="@string/account_title"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/select_category_layout" />
-
-    <EditText
-        android:id="@+id/account_memo_edittext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/humanbumsuk"
-        android:text="@string/account_memo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/account_title_edittext" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/cancel_btn"
+    <TextView
+        android:id="@+id/incomeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:layout_marginTop="148dp"
         android:fontFamily="@font/humanbumsuk"
-        android:text="@string/cancel"
+        android:text="수입 카테고리"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/text"
+        app:layout_constraintStart_toStartOf="@+id/text"
+        app:layout_constraintTop_toBottomOf="@+id/text" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/incomeText"
+        app:layout_constraintStart_toEndOf="@+id/incomeText"
+        app:layout_constraintTop_toTopOf="@+id/incomeText"
+        app:layout_constraintVertical_bias="0.307">
+
+        <LinearLayout
+            android:id="@+id/layout1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/salarySelectBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/add_category_background_stroke"
+                android:fontFamily="@font/humanbumsuk"
+                android:gravity="center"
+                android:text="월급"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/allowanceSelectBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/add_category_background_stroke"
+                android:fontFamily="@font/humanbumsuk"
+                android:gravity="center"
+                android:text="용돈"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/expensesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/humanbumsuk"
+        android:text="지출 카테고리"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/incomeText"
+        app:layout_constraintStart_toStartOf="@+id/incomeText"
+        app:layout_constraintTop_toBottomOf="@+id/incomeText" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/expensesText"
+        app:layout_constraintStart_toEndOf="@+id/expensesText"
+        app:layout_constraintTop_toTopOf="@+id/expensesText"
+        app:layout_constraintVertical_bias="0.307">
+
+        <LinearLayout
+            android:id="@+id/layout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fixedExpensesSelectBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/add_category_background_stroke"
+                android:fontFamily="@font/humanbumsuk"
+                android:gravity="center"
+                android:text="고정지출"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/transportSelectBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/add_category_background_stroke"
+                android:fontFamily="@font/humanbumsuk"
+                android:gravity="center"
+                android:text="교통비"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/dailyNecessitySelectBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/add_category_background_stroke"
+                android:fontFamily="@font/humanbumsuk"
+                android:gravity="center"
+                android:text="생필품"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/foodSelectBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/add_category_background_stroke"
+                android:fontFamily="@font/humanbumsuk"
+                android:gravity="center"
+                android:text="식비"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/giftSelectBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/add_category_background_stroke"
+                android:fontFamily="@font/humanbumsuk"
+                android:gravity="center"
+                android:text="선물"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/etcSelectBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/add_category_background_stroke"
+                android:fontFamily="@font/humanbumsuk"
+                android:gravity="center"
+                android:text="기타"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/titletextField"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        app:hintAnimationEnabled="false"
+        app:hintEnabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/accountTitleEdittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_background_stroke"
+            android:hint="내역 제목"
+            app:hintTextColor="@color/hintcolor" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/contenttextField"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        app:hintAnimationEnabled="false"
+        app:hintEnabled="false"
+        app:layout_constraintEnd_toEndOf="@+id/titletextField"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/titletextField"
+        app:layout_constraintTop_toBottomOf="@+id/titletextField">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/accountMemoEdittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_background_stroke"
+            android:hint="내역 내용"
+            app:hintTextColor="@color/hintcolor" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/cancelBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/add_money_background_stroke"
+        android:fontFamily="@font/humanbumsuk"
+        android:text="취소"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/add_btn"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/add_btn"
+        android:id="@+id/addBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/add_money_background_stroke"
         android:fontFamily="@font/humanbumsuk"
-        android:text="@string/add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/cancel_btn" />
+        android:text="추가"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cancelBtn"
+        app:layout_constraintStart_toEndOf="@+id/cancelBtn"
+        app:layout_constraintTop_toTopOf="@+id/cancelBtn"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

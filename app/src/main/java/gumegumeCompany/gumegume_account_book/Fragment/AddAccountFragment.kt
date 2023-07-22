@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.isGone
@@ -33,13 +34,13 @@ class AddAccountFragment : Fragment() {
     private lateinit var accountCategoryType:String //하위 카테고리
 
     //수입 하위 카테고리 버튼 목록
-    private val incomeCategorySelectBtns = arrayListOf<Button>(
+    private val incomeCategorySelectBtns = arrayListOf<TextView>(
         binding.salarySelectBtn, binding.allowanceSelectBtn
     )
     //지출 하위 카테고리 버튼 목록
-    private val expensesCategorySelectBtns = arrayListOf<Button>(
-        binding.fixedExpensesSelectBtn, binding.foodSelectBtn, binding.fixedExpensesSelectBtn,
-        binding.dailyNecessitySelectBtn, binding.giftSelectBtn, binding.etcSelectBtn
+    private val expensesCategorySelectBtns = arrayListOf<TextView>(
+        binding.fixedExpensesSelectBtn, binding.foodSelectBtn, binding.dailyNecessitySelectBtn,
+        binding.giftSelectBtn, binding.etcSelectBtn
     )
 
     //하위 카테고리 선택 버튼용 OnCLickListener
@@ -48,6 +49,7 @@ class AddAccountFragment : Fragment() {
             accountCategoryType = (view as Button).text.toString()
         }
     }
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

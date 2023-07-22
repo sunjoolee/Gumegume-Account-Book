@@ -4,6 +4,8 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="unabletext">#D2D1D4</color>
+    <color name="hintcolor">#BBBABF</color>
+    <color name="stroke">#E8E8EA</color>
 
     <color name="papayawhip">#FFFFEFD5</color>
     <color name="linen">#FFFAF0E6</color>

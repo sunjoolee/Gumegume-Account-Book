@@ -5,13 +5,63 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.HomeFragment">
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="홈(달력) 화면 입니다"
-        android:textSize="30dp"
-        android:gravity="center"/>
+        android:orientation="vertical"
+        android:layout_above="@+id/calendar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="수입: 원"
+                android:textSize="30dp"
+                android:fontFamily="@font/humanbumsuk"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="지출: 원"
+                android:textSize="30dp"
+                android:fontFamily="@font/humanbumsuk"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp">
+
+            <TextView
+                android:id="@+id/restMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="남은 돈: 원"
+                android:textSize="30dp"
+                android:fontFamily="@font/humanbumsuk"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        android:id="@+id/calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        app:mcv_selectionColor="@color/pastel_rainbow1"
+        app:mcv_showOtherDates="all" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_account_floating_btn"

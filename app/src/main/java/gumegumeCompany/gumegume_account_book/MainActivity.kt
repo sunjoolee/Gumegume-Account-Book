@@ -11,6 +11,9 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.zoyi.channel.plugin.android.ChannelIO
+import com.zoyi.channel.plugin.android.open.config.BootConfig
+import com.zoyi.channel.plugin.android.open.model.Profile
 import gumegumeCompany.gumegume_account_book.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -31,6 +34,22 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        ChannelIO.initialize(application)
+
+
+/*
+        채널톡 멤버 Id 관련해서 보류
+        val profile = Profile.create()
+            .setName(userName)
+            .setEmail(userEmail)
+            .setProperty("homepageUrl", "channel.io")
+
+        val bootConfig = BootConfig.create(R.string.YOUR_PLUGIN_KEY.toString())
+            .setMemberId(memberId)
+            .setProfile(profile)
+
+        ChannelIO.boot(bootConfig)*/
 
         onSetUpNavigation()
     }

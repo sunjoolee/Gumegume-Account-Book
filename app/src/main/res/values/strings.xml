@@ -2,6 +2,10 @@
     <string name="app_name">Gumegume-Account-Book</string>
 
     <string name="kakao_native_key">5d6f5e9dd9e1fd9300a4210309296264</string>
+
+    <!-- 채널톡 플러그인 키-->
+    <string name="YOUR_PLUGIN_KEY">1f317792-4bdd-464a-830b-6af18b914a1e</string>
+
     <string name="title_activity_main">MainActivity</string>
 
     <!-- Strings used for fragments for navigation -->
