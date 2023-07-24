@@ -33,10 +33,10 @@
         android:name="gumegumeCompany.gumegume_account_book.Fragment.AddAccountFragment"
         android:label="fragment_add_account"
         tools:layout="@layout/fragment_add_account" >
-        <action
-            android:id="@+id/action_add_account_to_home"
-            app:destination="@id/homeFragment"
-            app:popUpTo="@id/homeFragment"
-            app:popUpToInclusive="true"/>
+<!--        <action-->
+<!--            android:id="@+id/action_add_account_to_home"-->
+<!--            app:destination="@id/homeFragment"-->
+<!--            app:popUpTo="@id/homeFragment"-->
+<!--            app:popUpToInclusive="true"/>-->
     </fragment>
 </navigation>

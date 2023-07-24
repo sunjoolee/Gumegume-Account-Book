@@ -34,14 +34,9 @@ class AddAccountFragment : Fragment() {
     private lateinit var accountCategoryType:String //하위 카테고리
 
     //수입 하위 카테고리 버튼 목록
-    private val incomeCategorySelectBtns = arrayListOf<TextView>(
-        binding.salarySelectBtn, binding.allowanceSelectBtn
-    )
+    private lateinit var incomeCategorySelectBtns : MutableList<TextView>
     //지출 하위 카테고리 버튼 목록
-    private val expensesCategorySelectBtns = arrayListOf<TextView>(
-        binding.fixedExpensesSelectBtn, binding.foodSelectBtn, binding.dailyNecessitySelectBtn,
-        binding.giftSelectBtn, binding.etcSelectBtn
-    )
+    private lateinit var expensesCategorySelectBtns : MutableList<TextView>
 
     //하위 카테고리 선택 버튼용 OnCLickListener
     inner class SelectBtnListener : View.OnClickListener{
@@ -57,6 +52,16 @@ class AddAccountFragment : Fragment() {
     ): View? {
         _binding = FragmentAddAccountBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        //수입 하위 카테고리 버튼 목록
+        incomeCategorySelectBtns = mutableListOf<TextView>(
+            binding.salarySelectBtn, binding.allowanceSelectBtn
+        )
+        //지출 하위 카테고리 버튼 목록
+        expensesCategorySelectBtns = mutableListOf<TextView>(
+            binding.fixedExpensesSelectBtn, binding.foodSelectBtn, binding.dailyNecessitySelectBtn,
+            binding.giftSelectBtn, binding.etcSelectBtn
+        )
 
         //TODO: 화면 회전시 입력 데이터값 유지
 
@@ -100,7 +105,8 @@ class AddAccountFragment : Fragment() {
 
         //취소 버튼-> 홈 화면으로 돌아가기
         binding.cancelBtn.setOnClickListener {
-            it.findNavController()?.navigate(R.id.action_add_account_to_home)
+            //뒤로 돌아갈 때 action 사용하지 않고 back stack에서 불러오기
+            it.findNavController()?.popBackStack()
         }
         //추가 버튼-> 데이터베이스에 저장 -> 홈 화면으로 돌아가기
         binding.addBtn.setOnClickListener {
@@ -113,7 +119,8 @@ class AddAccountFragment : Fragment() {
             )
             //TODO: 내역 데이터베이스에 저장
 
-            it.findNavController()?.navigate(R.id.action_add_account_to_home)
+            //뒤로 돌아갈 때 action 사용하지 않고 back stack에서 불러오기
+            it.findNavController()?.popBackStack()
         }
 
         return view
