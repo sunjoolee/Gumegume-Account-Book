@@ -33,7 +33,7 @@ class HomeFragment : Fragment() {
 
             // 플로팅 버튼 클릭 시
             addAccountFloatingBtn.setOnClickListener {
-                view?.findNavController()?.navigate(R.id.action_home_to_add_account)
+                view.findNavController().navigate(R.id.action_home_to_add_account)
             }
         }
 

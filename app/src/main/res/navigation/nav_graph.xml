@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_home_to_add_account"
             app:destination="@id/add_accountFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_dayDetailInfoFragment"
+            app:destination="@id/dayDetailInfoFragment" />
     </fragment>
 
     <fragment
@@ -37,5 +40,14 @@
             android:id="@+id/action_add_account_to_home"
             app:destination="@id/homeFragment"
             app:popUpTo="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dayDetailInfoFragment"
+        android:name="gumegumeCompany.gumegume_account_book.Fragment.DayDetailInfoFragment"
+        android:label="fragment_day_detail_info"
+        tools:layout="@layout/fragment_day_detail_info" >
+        <action
+            android:id="@+id/action_dayDetailInfoFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>
