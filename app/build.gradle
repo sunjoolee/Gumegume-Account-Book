@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id("com.google.gms.google-services")
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -74,7 +74,6 @@ dependencies {
     // 커스텀 캘린더
     // https://velog.io/@nezhitsya/%ED%95%9C%EC%9D%B4%EC%9D%8C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-Custom-Calendar
     implementation 'com.prolificinteractive:material-calendarview:1.4.3'
-
 
     // 채널톡
     implementation 'io.channel:plugin-android:10.1.0'

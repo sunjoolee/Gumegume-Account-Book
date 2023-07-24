@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "318347811635",
+    "project_id": "gumegumeaccountbook",
+    "storage_bucket": "gumegumeaccountbook.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:318347811635:android:04b09e5a0b857914ee7c46",
+        "android_client_info": {
+          "package_name": "gumegumeCompany.gumegume_account_book"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "318347811635-it82apf639mooi7mhmi4lruaj2urd3qg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "gumegumeCompany.gumegume_account_book",
+            "certificate_hash": "87d321c43eaff46be3f0c08e6c50c8d29c5bd6ba"
+          }
+        },
+        {
+          "client_id": "318347811635-raetv18bras5ogu4sve0li509js5ip04.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0QFxTSC0npzWcD58MomxfWGvMzs1PvnA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "318347811635-raetv18bras5ogu4sve0li509js5ip04.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
