@@ -29,6 +29,9 @@ class AddAccountFragment : Fragment() {
     private lateinit var accountType : String //수입 or 지출
     private lateinit var accountCategoryType:String //하위 카테고리
 
+    private var incomeCnt = 0
+    private var expensesCnt = 0
+
     //수입 하위 카테고리 버튼 목록
     private val incomeCategorySelectBtns = binding?.let {
         arrayListOf<TextView>(
@@ -81,11 +84,21 @@ class AddAccountFragment : Fragment() {
 
         //수입 버튼 -> 수입 하위 카테고리 보이기 (디폴트)
         binding?.incomeBtn?.setOnClickListener {
+
+            // 수입 버튼 클릭 시 색상 변경
+            binding!!.incomeBtn.isSelected = binding!!.incomeBtn.isSelected != true
+            if(binding!!.incomeBtn.isSelected == true) binding!!.expensesBtn.isSelected = false
+
             accountType = "income"
             binding?.let { it1 -> showCategories(accountType, it1) }
         }
         //지출 버튼 -> 수입 하위 카테고리 보이기
         binding?.expensesBtn?.setOnClickListener {
+
+            // 지출 버튼 클릭 시 색상 변경
+            binding!!.expensesBtn.isSelected = binding!!.expensesBtn.isSelected != true
+            if(binding!!.expensesBtn.isSelected == true) binding!!.incomeBtn.isSelected = false
+
             accountType = "expenses"
             binding?.let { it1 -> showCategories(accountType, it1) }
         }

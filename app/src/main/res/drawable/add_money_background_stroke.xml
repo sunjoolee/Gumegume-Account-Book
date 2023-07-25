@@ -13,7 +13,7 @@
         <shape>
             <size android:height="45dp" android:width="140dp"/>
             <corners android:radius="4dp"/>
-            <stroke android:width="3dp" android:color="@color/pastel_rainbow4"/>
+            <stroke android:width="3dp" android:color="@color/pastel_rainbow1"/>
         </shape>
 
     </item>
