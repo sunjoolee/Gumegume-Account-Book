@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:background="@drawable/add_money_background_stroke"
+        android:background="@drawable/negative_btn_background_stroke"
         android:fontFamily="@font/humanbumsuk"
         android:text="0000/00/00"
         android:textSize="20dp"
@@ -36,8 +36,8 @@
         android:id="@+id/incomeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:background="@drawable/add_money_background_stroke"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/positive_btn_background_stroke"
         android:fontFamily="@font/humanbumsuk"
         android:text="수입"
         android:textSize="20dp"
@@ -49,10 +49,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:background="@drawable/add_money_background_stroke"
+        android:background="@drawable/negative_btn_background_stroke"
         android:fontFamily="@font/humanbumsuk"
         android:text="지출"
-
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/incomeBtn"
         app:layout_constraintStart_toEndOf="@+id/incomeBtn"
@@ -63,7 +62,7 @@
         android:id="@+id/incomeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="130dp"
         android:fontFamily="@font/humanbumsuk"
         android:text="수입 카테고리"
         android:textSize="20dp"
@@ -71,20 +70,15 @@
         app:layout_constraintStart_toStartOf="@+id/text"
         app:layout_constraintTop_toBottomOf="@+id/text" />
 
-    <ScrollView
-        android:id="@+id/scrollView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/incomeText"
-        app:layout_constraintStart_toEndOf="@+id/incomeText"
-        app:layout_constraintTop_toTopOf="@+id/incomeText"
-        app:layout_constraintVertical_bias="0.307">
-
         <LinearLayout
             android:id="@+id/layout1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/incomeText"
+            app:layout_constraintStart_toEndOf="@+id/incomeText"
+            app:layout_constraintTop_toTopOf="@+id/incomeText"
+            app:layout_constraintVertical_bias="0.307"
             android:orientation="horizontal">
 
             <TextView
@@ -92,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/add_category_background_stroke"
+                android:background="@drawable/positive_category_background_stroke"
                 android:fontFamily="@font/humanbumsuk"
                 android:gravity="center"
                 android:text="월급"
@@ -102,15 +96,13 @@
                 android:id="@+id/allowanceSelectBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/add_category_background_stroke"
+                android:background="@drawable/positive_category_background_stroke"
                 android:fontFamily="@font/humanbumsuk"
                 android:gravity="center"
                 android:text="용돈"
                 android:textSize="20dp" />
 
         </LinearLayout>
-
-    </ScrollView>
 
     <TextView
         android:id="@+id/expensesText"
@@ -124,91 +116,100 @@
         app:layout_constraintStart_toStartOf="@+id/incomeText"
         app:layout_constraintTop_toBottomOf="@+id/incomeText" />
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="260dp"
+    <LinearLayout
+        android:id="@+id/layout2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/expensesText"
-        app:layout_constraintStart_toEndOf="@+id/expensesText"
-        app:layout_constraintTop_toTopOf="@+id/expensesText"
-        app:layout_constraintVertical_bias="0.307">
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/layout1"
+        app:layout_constraintTop_toBottomOf="@+id/layout1"
+        app:layout_constraintVertical_bias="0.307"
+        android:layout_marginTop="25dp">
 
-        <LinearLayout
-            android:id="@+id/layout2"
+        <ScrollView
+            android:id="@+id/scrollView2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/fixedExpensesSelectBtn"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/layout3"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/add_category_background_stroke"
-                android:fontFamily="@font/humanbumsuk"
-                android:gravity="center"
-                android:text="고정지출"
-                android:textSize="20dp" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/transportSelectBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/add_category_background_stroke"
-                android:fontFamily="@font/humanbumsuk"
-                android:gravity="center"
-                android:text="교통비"
-                android:textSize="20dp" />
+                <TextView
+                    android:id="@+id/fixedExpensesSelectBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/negative_category_background_stroke"
+                    android:fontFamily="@font/humanbumsuk"
+                    android:gravity="center"
+                    android:text="고정지출"
+                    android:textSize="20dp" />
 
-            <TextView
-                android:id="@+id/dailyNecessitySelectBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/add_category_background_stroke"
-                android:fontFamily="@font/humanbumsuk"
-                android:gravity="center"
-                android:text="생필품"
-                android:textSize="20dp" />
+                <TextView
+                    android:id="@+id/transportSelectBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/negative_category_background_stroke"
+                    android:fontFamily="@font/humanbumsuk"
+                    android:gravity="center"
+                    android:text="교통비"
+                    android:textSize="20dp" />
 
-            <TextView
-                android:id="@+id/foodSelectBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/add_category_background_stroke"
-                android:fontFamily="@font/humanbumsuk"
-                android:gravity="center"
-                android:text="식비"
-                android:textSize="20dp" />
+                <TextView
+                    android:id="@+id/dailyNecessitySelectBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/negative_category_background_stroke"
+                    android:fontFamily="@font/humanbumsuk"
+                    android:gravity="center"
+                    android:text="생필품"
+                    android:textSize="20dp" />
 
-            <TextView
-                android:id="@+id/giftSelectBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/add_category_background_stroke"
-                android:fontFamily="@font/humanbumsuk"
-                android:gravity="center"
-                android:text="선물"
-                android:textSize="20dp" />
+                <TextView
+                    android:id="@+id/foodSelectBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/negative_category_background_stroke"
+                    android:fontFamily="@font/humanbumsuk"
+                    android:gravity="center"
+                    android:text="식비"
+                    android:textSize="20dp" />
 
-            <TextView
-                android:id="@+id/etcSelectBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/add_category_background_stroke"
-                android:fontFamily="@font/humanbumsuk"
-                android:gravity="center"
-                android:text="기타"
-                android:textSize="20dp" />
+                <TextView
+                    android:id="@+id/giftSelectBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/negative_category_background_stroke"
+                    android:fontFamily="@font/humanbumsuk"
+                    android:gravity="center"
+                    android:text="선물"
+                    android:textSize="20dp" />
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/etcSelectBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/negative_category_background_stroke"
+                    android:fontFamily="@font/humanbumsuk"
+                    android:gravity="center"
+                    android:text="기타"
+                    android:textSize="20dp" />
 
-    </ScrollView>
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/titletextField"
@@ -222,7 +223,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2">
+        app:layout_constraintTop_toBottomOf="@+id/layout2">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/accountTitleEdittext"
@@ -262,7 +263,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginBottom="32dp"
-        android:background="@drawable/add_money_background_stroke"
+        android:background="@drawable/negative_btn_background_stroke"
         android:fontFamily="@font/humanbumsuk"
         android:text="취소"
         android:textSize="25dp"
@@ -275,7 +276,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginBottom="32dp"
-        android:background="@drawable/add_money_background_stroke"
+        android:background="@drawable/positive_btn_background_stroke"
         android:fontFamily="@font/humanbumsuk"
         android:text="추가"
         android:textSize="25dp"
