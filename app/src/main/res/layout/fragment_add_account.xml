@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/account_date_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/accountDateBtn"
+        android:id="@+id/account_date_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
@@ -27,13 +27,13 @@
         android:fontFamily="@font/humanbumsuk"
         android:text="0000/00/00"
         android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/text"
-        app:layout_constraintStart_toEndOf="@+id/text"
-        app:layout_constraintTop_toTopOf="@+id/text"
+        app:layout_constraintBottom_toBottomOf="@+id/account_date_textview"
+        app:layout_constraintStart_toEndOf="@+id/account_date_textview"
+        app:layout_constraintTop_toTopOf="@+id/account_date_textview"
         app:layout_constraintVertical_bias="0.578" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/incomeBtn"
+        android:id="@+id/income_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -41,11 +41,11 @@
         android:fontFamily="@font/humanbumsuk"
         android:text="수입"
         android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="@+id/text"
-        app:layout_constraintTop_toBottomOf="@+id/text" />
+        app:layout_constraintStart_toStartOf="@+id/account_date_textview"
+        app:layout_constraintTop_toBottomOf="@+id/account_date_textview" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/expensesBtn"
+        android:id="@+id/expenses_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -53,36 +53,36 @@
         android:fontFamily="@font/humanbumsuk"
         android:text="지출"
         android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/incomeBtn"
-        app:layout_constraintStart_toEndOf="@+id/incomeBtn"
-        app:layout_constraintTop_toTopOf="@+id/incomeBtn"
+        app:layout_constraintBottom_toBottomOf="@+id/income_btn"
+        app:layout_constraintStart_toEndOf="@+id/income_btn"
+        app:layout_constraintTop_toTopOf="@+id/income_btn"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/incomeText"
+        android:id="@+id/income_category_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="130dp"
         android:fontFamily="@font/humanbumsuk"
         android:text="수입 카테고리"
         android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/text"
-        app:layout_constraintStart_toStartOf="@+id/text"
-        app:layout_constraintTop_toBottomOf="@+id/text" />
+        app:layout_constraintEnd_toEndOf="@+id/account_date_textview"
+        app:layout_constraintStart_toStartOf="@+id/account_date_textview"
+        app:layout_constraintTop_toBottomOf="@+id/account_date_textview" />
 
         <LinearLayout
-            android:id="@+id/layout1"
+            android:id="@+id/income_category_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            app:layout_constraintBottom_toBottomOf="@+id/incomeText"
-            app:layout_constraintStart_toEndOf="@+id/incomeText"
-            app:layout_constraintTop_toTopOf="@+id/incomeText"
+            app:layout_constraintBottom_toBottomOf="@+id/income_category_textview"
+            app:layout_constraintStart_toEndOf="@+id/income_category_textview"
+            app:layout_constraintTop_toTopOf="@+id/income_category_textview"
             app:layout_constraintVertical_bias="0.307"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/salarySelectBtn"
+                android:id="@+id/salary_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
@@ -93,7 +93,7 @@
                 android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/allowanceSelectBtn"
+                android:id="@+id/allowance_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/positive_category_background_stroke"
@@ -105,41 +105,41 @@
         </LinearLayout>
 
     <TextView
-        android:id="@+id/expensesText"
+        android:id="@+id/expenses_category_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:fontFamily="@font/humanbumsuk"
         android:text="지출 카테고리"
         android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/incomeText"
-        app:layout_constraintStart_toStartOf="@+id/incomeText"
-        app:layout_constraintTop_toBottomOf="@+id/incomeText" />
+        app:layout_constraintEnd_toEndOf="@+id/income_category_textview"
+        app:layout_constraintStart_toStartOf="@+id/income_category_textview"
+        app:layout_constraintTop_toBottomOf="@+id/income_category_textview" />
 
     <LinearLayout
-        android:id="@+id/layout2"
+        android:id="@+id/expenses_category_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@+id/layout1"
-        app:layout_constraintTop_toBottomOf="@+id/layout1"
+        app:layout_constraintStart_toStartOf="@+id/income_category_layout"
+        app:layout_constraintTop_toBottomOf="@+id/income_category_layout"
         app:layout_constraintVertical_bias="0.307"
         android:layout_marginTop="25dp">
 
         <ScrollView
-            android:id="@+id/scrollView2"
+            android:id="@+id/expenses_category_scrollview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/layout3"
+                android:id="@+id/expenses_category_scrollview_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/fixedExpensesSelectBtn"
+                    android:id="@+id/fixedexpenses_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
@@ -150,7 +150,7 @@
                     android:textSize="20dp" />
 
                 <TextView
-                    android:id="@+id/transportSelectBtn"
+                    android:id="@+id/transport_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
@@ -161,7 +161,7 @@
                     android:textSize="20dp" />
 
                 <TextView
-                    android:id="@+id/dailyNecessitySelectBtn"
+                    android:id="@+id/dailynecessity_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
@@ -172,7 +172,7 @@
                     android:textSize="20dp" />
 
                 <TextView
-                    android:id="@+id/foodSelectBtn"
+                    android:id="@+id/food_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
@@ -183,7 +183,7 @@
                     android:textSize="20dp" />
 
                 <TextView
-                    android:id="@+id/giftSelectBtn"
+                    android:id="@+id/gift_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
@@ -194,7 +194,7 @@
                     android:textSize="20dp" />
 
                 <TextView
-                    android:id="@+id/etcSelectBtn"
+                    android:id="@+id/etc_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
@@ -210,9 +210,8 @@
     </LinearLayout>
 
 
-
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/titletextField"
+        android:id="@+id/account_title_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
@@ -223,10 +222,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout2">
+        app:layout_constraintTop_toBottomOf="@+id/expenses_category_layout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/accountTitleEdittext"
+            android:id="@+id/account_title_edittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_background_stroke"
@@ -235,7 +234,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/contenttextField"
+        android:id="@+id/account_content_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
@@ -243,13 +242,13 @@
         android:layout_marginTop="16dp"
         app:hintAnimationEnabled="false"
         app:hintEnabled="false"
-        app:layout_constraintEnd_toEndOf="@+id/titletextField"
+        app:layout_constraintEnd_toEndOf="@+id/account_title_layout"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/titletextField"
-        app:layout_constraintTop_toBottomOf="@+id/titletextField">
+        app:layout_constraintStart_toStartOf="@+id/account_title_layout"
+        app:layout_constraintTop_toBottomOf="@+id/account_title_layout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/accountMemoEdittext"
+            android:id="@+id/account_content_edittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_background_stroke"
@@ -258,7 +257,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/cancelBtn"
+        android:id="@+id/cancel_account_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
@@ -271,7 +270,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/addBtn"
+        android:id="@+id/add_account_Btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -280,9 +279,9 @@
         android:fontFamily="@font/humanbumsuk"
         android:text="추가"
         android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="@+id/cancelBtn"
-        app:layout_constraintStart_toEndOf="@+id/cancelBtn"
-        app:layout_constraintTop_toTopOf="@+id/cancelBtn"
+        app:layout_constraintBottom_toBottomOf="@+id/cancel_account_btn"
+        app:layout_constraintStart_toEndOf="@+id/cancel_account_btn"
+        app:layout_constraintTop_toTopOf="@+id/cancel_account_btn"
         app:layout_constraintVertical_bias="0.0" />
 
 
