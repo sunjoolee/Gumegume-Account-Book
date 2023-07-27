@@ -89,18 +89,20 @@ class AddAccountFragment : Fragment() {
 
         //수입 버튼 -> 수입 하위 카테고리 보이기 (디폴트)
         binding?.incomeBtn?.setOnClickListener {
-            // 수입 버튼 클릭 시 색상 변경
+            //수입 버튼 클릭 시 색상 변경
             binding!!.incomeBtn.isSelected = !(binding!!.incomeBtn.isSelected)
-            if (binding!!.incomeBtn.isSelected) binding!!.expensesBtn.isSelected = false
+            //수입 버튼과 지출 버튼 클릭 상태 늘 반대가 되도록 함
+            binding!!.expensesBtn.isSelected = !(binding!!.incomeBtn.isSelected)
 
             accountType = "income"
             binding?.let { showCategories(accountType, it) }
         }
         //지출 버튼 -> 수입 하위 카테고리 보이기
         binding?.expensesBtn?.setOnClickListener {
-            // 지출 버튼 클릭 시 색상 변경
+            //지출 버튼 클릭 시 색상 변경
             binding!!.expensesBtn.isSelected = !(binding!!.expensesBtn.isSelected)
-            if (binding!!.expensesBtn.isSelected) binding!!.incomeBtn.isSelected = false
+            //수입 버튼과 지출 버튼 클릭 상태 늘 반대가 되도록 함
+            binding!!.incomeBtn.isSelected = !(binding!!.expensesBtn.isSelected)
 
             accountType = "expenses"
             binding?.let { showCategories(accountType, it) }
