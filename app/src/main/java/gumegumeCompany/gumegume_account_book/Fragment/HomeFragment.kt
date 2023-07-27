@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
+import com.prolificinteractive.materialcalendarview.CalendarDay
+import gumegumeCompany.gumegume_account_book.Calendar.TodayDecorator
 import gumegumeCompany.gumegume_account_book.R
 import gumegumeCompany.gumegume_account_book.databinding.FragmentHomeBinding
 
@@ -30,14 +32,14 @@ class HomeFragment : Fragment() {
 
         binding.run {
 
-            calendar.setSelectedDate(CalendarDay.today())
+            calendar.selectedDate = CalendarDay.today()
             calendar.addDecorator(TodayDecorator())
 
             // 플로팅 버튼 클릭 시
             addAccountFloatingBtn.setOnClickListener {
                 view.findNavController().navigate(R.id.action_home_to_add_account)
             }
-
+        }
         return view
     }
 
