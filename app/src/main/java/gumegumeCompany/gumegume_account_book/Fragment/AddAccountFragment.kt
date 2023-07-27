@@ -70,7 +70,7 @@ class AddAccountFragment : Fragment() {
 
         //내역 날짜 디폴트 값 설정
         //홈 화면에서 추가하는 경우, 현재 날짜
-        binding?.accountDateTextview?.text = LocalDate.now()
+        binding?.accountDateBtn?.text = LocalDate.now()
             .format(DateTimeFormatter.ofPattern("yyyy/MM/dd"))
 
         //TODO: day detail info fragment에서 추가하는 경우, 일일 내역의 날짜
@@ -79,7 +79,7 @@ class AddAccountFragment : Fragment() {
         binding?.accountDateBtn?.setOnClickListener {
             val cal = Calendar.getInstance()
             val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, month, day ->
-                binding?.accountDateBtn?.text = "${year}/${month}/${day}"
+                binding?.accountDateBtn?.text = "${year}/${month + 1}/${day}"
             }
             DatePickerDialog(
                 this.requireContext(), dateSetListener,
