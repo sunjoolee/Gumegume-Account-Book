@@ -5,50 +5,57 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.HomeFragment">
+
     <LinearLayout
+        android:id="@+id/layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_above="@+id/calendar">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="horizontal"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="15dp">
+            android:layout_marginStart="15dp">
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="40dp"
                 android:layout_weight="1"
                 android:text="수입: 원"
-                android:textSize="30dp"
+                android:autoSizeMaxTextSize="30sp"
+                android:autoSizeTextType="uniform"
+                android:maxLines="1"
                 android:fontFamily="@font/humanbumsuk"/>
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="40dp"
                 android:layout_weight="1"
                 android:text="지출: 원"
-                android:textSize="30dp"
+                android:autoSizeMaxTextSize="30sp"
+                android:autoSizeTextType="uniform"
+                android:maxLines="1"
                 android:fontFamily="@font/humanbumsuk"/>
 
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="15dp">
+            android:layout_marginStart="15dp">
 
             <TextView
                 android:id="@+id/restMoney"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
                 android:text="남은 돈: 원"
-                android:textSize="30dp"
+                android:autoSizeMaxTextSize="30sp"
+                android:autoSizeTextType="uniform"
+                android:maxLines="1"
                 android:fontFamily="@font/humanbumsuk"/>
 
         </LinearLayout>
@@ -59,7 +66,7 @@
         android:id="@+id/calendar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/layout"
         app:mcv_selectionColor="@color/pastel_rainbow1"
         app:mcv_showOtherDates="all" />
 
@@ -68,8 +75,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="36dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="36dp"
         android:layout_marginBottom="36dp"
         android:backgroundTint="@color/white"
         app:srcCompat="@drawable/square_plus_48"

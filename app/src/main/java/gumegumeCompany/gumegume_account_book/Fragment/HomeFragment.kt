@@ -28,10 +28,16 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        binding.addAccountFloatingBtn.setOnClickListener { view ->
-            Log.d(TAG, "add account floating btn clicked")
-            view?.findNavController()?.navigate(R.id.action_home_to_add_account)
-        }
+        binding.run {
+
+            calendar.setSelectedDate(CalendarDay.today())
+            calendar.addDecorator(TodayDecorator())
+
+            // 플로팅 버튼 클릭 시
+            addAccountFloatingBtn.setOnClickListener {
+                view.findNavController().navigate(R.id.action_home_to_add_account)
+            }
+
         return view
     }
 

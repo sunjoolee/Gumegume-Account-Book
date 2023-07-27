@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import gumegumeCompany.gumegume_account_book.R
 import gumegumeCompany.gumegume_account_book.databinding.FragmentDayDetailInfoBinding
 
 
