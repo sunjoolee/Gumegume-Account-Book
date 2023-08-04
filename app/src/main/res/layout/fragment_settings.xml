@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/humanbumsuk"
                 android:gravity="center"
-                android:text="홍길동"
+                android:text="@string/profile_default_name"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -60,14 +60,21 @@
                     android:layout_height="13dp"
                     android:layout_marginEnd="16dp"
                     tools:src="@drawable/venus_18" />
-
                 <TextView
-                    android:id="@+id/profile_user_birth"
+                    android:id="@+id/profile_user_birthyear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/humanbumsuk"
                     android:gravity="center"
-                    android:text="0000년 00월 00일"
+                    android:text="@string/profile_default_birthyear"
+                    android:textSize="15sp"/>
+                <TextView
+                    android:id="@+id/profile_user_birthdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/humanbumsuk"
+                    android:gravity="center"
+                    android:text="@string/profile_default_birthdate"
                     android:textSize="15sp"/>
             </LinearLayout>
 
@@ -134,7 +141,7 @@
                 android:textSize="16dp"
                 android:background="@color/white"
                 android:fontFamily="@font/humanbumsuk"
-                android:text="@string/finance_luck_name" />
+                android:text="@string/finance_luck_default_name" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/finance_luck_birthdate_btn"

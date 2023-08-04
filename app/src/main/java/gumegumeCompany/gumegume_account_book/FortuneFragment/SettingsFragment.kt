@@ -41,7 +41,7 @@ class SettingsFragment : Fragment() {
         //현재 로그인한 사용자 정보 프로필에 표시
         var userName: String = "비회원"
         var userGender: String = "unKnown"
-        var userBirthYear: String = "0000";
+        //var userBirthYear: String = "0000";
         var userBirthDate: String = "00/00";
 
         UserApiClient.instance.me { user, error ->
@@ -57,7 +57,7 @@ class SettingsFragment : Fragment() {
                         "MALE" -> profileUserGender.setImageDrawable(resources.getDrawable(R.drawable.mars_18))
                         else -> profileUserGender.setImageDrawable(resources.getDrawable(R.drawable.money_18))
                     }
-                    profileUserBirth.text = "=${user?.kakaoAccount?.birthday}"
+                    profileUserBirthdate.text = "=${user?.kakaoAccount?.birthday}"
                 }
 
                 //userNickname = user.kakaoAccount?.profile?.nickname.toString()
