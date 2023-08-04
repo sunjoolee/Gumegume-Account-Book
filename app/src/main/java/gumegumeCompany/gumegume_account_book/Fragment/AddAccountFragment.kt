@@ -12,15 +12,11 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.core.view.isGone
 import androidx.navigation.findNavController
-import gumegumeCompany.gumegume_account_book.AccountInfo.AccountInfo
-import gumegumeCompany.gumegume_account_book.R
-import gumegumeCompany.gumegume_account_book.MainActivity.Companion.categoryColorIds
+import gumegumeCompany.gumegume_account_book.AccountData.AccountViewModel
 import gumegumeCompany.gumegume_account_book.databinding.FragmentAddAccountBinding
 import java.time.LocalDate
-import java.time.Year
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
-import java.util.Date
 
 class AddAccountFragment : Fragment() {
     private var _binding: FragmentAddAccountBinding? = null
@@ -55,20 +51,6 @@ class AddAccountFragment : Fragment() {
     inner class categoryTextviewOnClickListener : View.OnClickListener {
         override fun onClick(view: View?) {
             accountCategoryType = (view as Button).text.toString()
-
-            if (incomeCategoryTextviewArray != null) {
-                for(textView in incomeCategoryTextviewArray) {
-                    textView.isSelected = false
-                }
-            }
-
-            if (expensesCategoryTextviewArray != null) {
-                for(textView in expensesCategoryTextviewArray) {
-                    textView.isSelected = false
-                }
-            }
-
-            view.isSelected = true
         }
     }
 
@@ -79,8 +61,6 @@ class AddAccountFragment : Fragment() {
     ): View? {
         _binding = FragmentAddAccountBinding.inflate(inflater, container, false)
         val view = binding?.root
-
-        
 
         //TODO: 화면 회전시 입력 데이터값 유지
 
@@ -113,7 +93,6 @@ class AddAccountFragment : Fragment() {
             accountType = "income"
             binding?.let { showCategories(accountType, it) }
         }
-
         //지출 버튼 -> 수입 하위 카테고리 보이기
         binding?.expensesBtn?.setOnClickListener {
             //지출 버튼 클릭 시 색상 변경
@@ -131,7 +110,6 @@ class AddAccountFragment : Fragment() {
                 textview.setOnClickListener(categoryTextviewOnClickListener())
             }
         }
-
         expensesCategoryTextviewArray?.let{
             for (textview in it) {
                 textview.setOnClickListener(categoryTextviewOnClickListener())
@@ -162,6 +140,20 @@ class AddAccountFragment : Fragment() {
         )
         //TODO: 내역 데이터베이스에 저장
         */
+        //추가 버튼-> 데이터베이스에 저장 -> 홈 화면으로 돌아가기
+        binding?.addAccountBtn?.setOnClickListener {
+            val newAccountInfo = AccountViewModel(
+                binding!!.accountDateBtn.text.toString(),
+                accountType,
+                accountCategoryType,
+                binding!!.accountTitleEdittext.text.toString(),
+                binding!!.accountContentEdittext.text.toString()
+            )
+            //TODO: 내역 데이터베이스에 저장
+
+            //뒤로 돌아갈 때 action 사용하지 않고 back stack에서 불러오기
+            it.findNavController()?.popBackStack()
+        }
 
         return view
     }
