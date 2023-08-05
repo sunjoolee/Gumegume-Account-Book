@@ -1,8 +1,6 @@
-package gumegumeCompany.gumegume_account_book.Fragment
+package gumegumeCompany.gumegume_account_book.StatesFragment
 
 import android.graphics.Color.BLACK
-import android.graphics.Typeface
-import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,7 +10,6 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import gumegumeCompany.gumegume_account_book.MainActivity.Companion.categoryColorIds
-import gumegumeCompany.gumegume_account_book.R
 import gumegumeCompany.gumegume_account_book.databinding.FragmentStatsBinding
 
 class StatsFragment : Fragment() {

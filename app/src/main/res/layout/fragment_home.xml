@@ -1,85 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragment.HomeFragment">
+    tools:context=".HomeFragment.HomeFragment">
 
-    <LinearLayout
-        android:id="@+id/layout"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/Appbar_Layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:fitsSystemWindows="true">
 
-        <LinearLayout
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/AppBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="15dp">
+            android:layout_height="?attr/actionBarSize"
+            app:title="홈화면"
+            app:menu="@menu/top_app_bar_menu_add"
+            app:titleCentered="true" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:text="수입: 원"
-                android:autoSizeMaxTextSize="30sp"
-                android:autoSizeTextType="uniform"
-                android:maxLines="1"
-                android:fontFamily="@font/humanbumsuk"/>
+    </com.google.android.material.appbar.AppBarLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:text="지출: 원"
-                android:autoSizeMaxTextSize="30sp"
-                android:autoSizeTextType="uniform"
-                android:maxLines="1"
-                android:fontFamily="@font/humanbumsuk"/>
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/NestScrool_View"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/Appbar_Layout">
 
-        </LinearLayout>
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="15dp">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/restMoney"
+            <LinearLayout
+                android:id="@+id/layout"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:text="남은 돈: 원"
-                android:autoSizeMaxTextSize="30sp"
-                android:autoSizeTextType="uniform"
-                android:maxLines="1"
-                android:fontFamily="@font/humanbumsuk"/>
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
-    </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:autoSizeMaxTextSize="30sp"
+                        android:autoSizeTextType="uniform"
+                        android:fontFamily="@font/humanbumsuk"
+                        android:maxLines="1"
+                        android:text="수입: 원" />
 
-    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-        android:id="@+id/calendar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/layout"
-        app:mcv_selectionColor="@color/pastel_rainbow1"
-        app:mcv_showOtherDates="all" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:autoSizeMaxTextSize="30sp"
+                        android:autoSizeTextType="uniform"
+                        android:fontFamily="@font/humanbumsuk"
+                        android:maxLines="1"
+                        android:text="지출: 원" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_account_floating_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="36dp"
-        android:backgroundTint="@color/white"
-        app:srcCompat="@drawable/square_plus_48"
-        app:rippleColor="@color/linen"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/restMoney"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:autoSizeMaxTextSize="30sp"
+                        android:autoSizeTextType="uniform"
+                        android:fontFamily="@font/humanbumsuk"
+                        android:maxLines="1"
+                        android:text="남은 돈: 원" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                android:id="@+id/calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout"
+                app:mcv_selectionColor="@color/pastel_rainbow1"
+                app:mcv_showOtherDates="all" />
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </RelativeLayout>
