@@ -55,6 +55,20 @@ class AddAccountFragment : Fragment() {
     inner class categoryTextviewOnClickListener : View.OnClickListener {
         override fun onClick(view: View?) {
             accountCategoryType = (view as Button).text.toString()
+
+            if (incomeCategoryTextviewArray != null) {
+                for(textView in incomeCategoryTextviewArray) {
+                    textView.isSelected = false
+                }
+            }
+
+            if (expensesCategoryTextviewArray != null) {
+                for(textView in expensesCategoryTextviewArray) {
+                    textView.isSelected = false
+                }
+            }
+
+            view.isSelected = true
         }
     }
 
@@ -65,6 +79,8 @@ class AddAccountFragment : Fragment() {
     ): View? {
         _binding = FragmentAddAccountBinding.inflate(inflater, container, false)
         val view = binding?.root
+
+        
 
         //TODO: 화면 회전시 입력 데이터값 유지
 
@@ -97,6 +113,7 @@ class AddAccountFragment : Fragment() {
             accountType = "income"
             binding?.let { showCategories(accountType, it) }
         }
+
         //지출 버튼 -> 수입 하위 카테고리 보이기
         binding?.expensesBtn?.setOnClickListener {
             //지출 버튼 클릭 시 색상 변경
@@ -114,31 +131,37 @@ class AddAccountFragment : Fragment() {
                 textview.setOnClickListener(categoryTextviewOnClickListener())
             }
         }
+
         expensesCategoryTextviewArray?.let{
             for (textview in it) {
                 textview.setOnClickListener(categoryTextviewOnClickListener())
             }
         }
 
-        //취소 버튼-> 홈 화면으로 돌아가기
-        binding?.cancelAccountBtn?.setOnClickListener {
-            //뒤로 돌아갈 때 action 사용하지 않고 back stack에서 불러오기
-            it.findNavController()?.popBackStack()
+        binding?.AppBar?.setNavigationOnClickListener {
+            view?.findNavController()?.navigate(R.id.action_add_accountFragment_to_homeFragment)
         }
-        //추가 버튼-> 데이터베이스에 저장 -> 홈 화면으로 돌아가기
-        binding?.addAccountBtn?.setOnClickListener {
-            val newAccountInfo = AccountInfo(
-                binding!!.accountDateBtn.text.toString(),
-                accountType,
-                accountCategoryType,
-                binding!!.accountTitleEdittext.text.toString(),
-                binding!!.accountContentEdittext.text.toString()
-            )
-            //TODO: 내역 데이터베이스에 저장
 
-            //뒤로 돌아갈 때 action 사용하지 않고 back stack에서 불러오기
-            it.findNavController()?.popBackStack()
+        binding?.AppBar?.setOnMenuItemClickListener {
+            when(it.itemId){
+                R.id.add_content -> {
+                    // 데이터 베이스에 저장 후 HomeFragment로 이동
+                }
+                else -> {}
+            }
+            false
         }
+
+        /*
+        val newAccountInfo = AccountInfo(
+            binding!!.accountDateBtn.text.toString(),
+            accountType,
+            accountCategoryType,
+            binding!!.accountTitleEdittext.text.toString(),
+            binding!!.accountContentEdittext.text.toString()
+        )
+        //TODO: 내역 데이터베이스에 저장
+        */
 
         return view
     }

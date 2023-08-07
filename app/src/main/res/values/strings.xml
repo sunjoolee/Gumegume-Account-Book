@@ -88,5 +88,6 @@
     <string name="finance_luck_name">홍길동</string>
     <string name="finance_luck_woman">여성</string>
     <string name="finance_luck_man">남성</string>
+    <string name="save">저장하기</string>
 
 </resources>

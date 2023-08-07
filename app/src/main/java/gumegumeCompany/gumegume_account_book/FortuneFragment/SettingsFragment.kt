@@ -1,4 +1,4 @@
-package gumegumeCompany.gumegume_account_book.Fragment
+package gumegumeCompany.gumegume_account_book.FortuneFragment
 
 import android.app.AlertDialog
 import android.content.Intent
@@ -14,7 +14,7 @@ import android.widget.NumberPicker
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatButton
 import com.kakao.sdk.user.UserApiClient
-import gumegumeCompany.gumegume_account_book.LoginActivity
+import gumegumeCompany.gumegume_account_book.Login.LoginActivity
 import gumegumeCompany.gumegume_account_book.R
 import gumegumeCompany.gumegume_account_book.databinding.FragmentSettingsBinding
 import java.time.LocalDate

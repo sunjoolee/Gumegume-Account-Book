@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="gumegumeCompany.gumegume_account_book.Fragment.HomeFragment"
+        android:name="gumegumeCompany.gumegume_account_book.HomeFragment.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -20,13 +20,13 @@
 
     <fragment
         android:id="@+id/statsFragment"
-        android:name="gumegumeCompany.gumegume_account_book.Fragment.StatsFragment"
+        android:name="gumegumeCompany.gumegume_account_book.StatesFragment.StatsFragment"
         android:label="fragment_stats"
         tools:layout="@layout/fragment_stats" />
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="gumegumeCompany.gumegume_account_book.Fragment.SettingsFragment"
+        android:name="gumegumeCompany.gumegume_account_book.FortuneFragment.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" >
     </fragment>
@@ -36,14 +36,20 @@
         android:name="gumegumeCompany.gumegume_account_book.Fragment.AddAccountFragment"
         android:label="fragment_add_account"
         tools:layout="@layout/fragment_add_account" >
+        <action
+            android:id="@+id/action_add_accountFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/dayDetailInfoFragment"
-        android:name="gumegumeCompany.gumegume_account_book.Fragment.DayDetailInfoFragment"
+        android:name="gumegumeCompany.gumegume_account_book.DayDetailInfoFragment.DayDetailInfoFragment"
         android:label="fragment_day_detail_info"
         tools:layout="@layout/fragment_day_detail_info" >
         <action
             android:id="@+id/action_dayDetailInfoFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_dayDetailInfoFragment_to_add_accountFragment"
+            app:destination="@id/add_accountFragment" />
     </fragment>
 </navigation>
