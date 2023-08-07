@@ -1,6 +1,5 @@
-package gumegumeCompany.gumegume_account_book
+package gumegumeCompany.gumegume_account_book.Login
 
-import android.content.ComponentCallbacks
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +12,8 @@ import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
+import gumegumeCompany.gumegume_account_book.MainActivity
+import gumegumeCompany.gumegume_account_book.R
 import gumegumeCompany.gumegume_account_book.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {

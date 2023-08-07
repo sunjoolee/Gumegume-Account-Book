@@ -5,20 +5,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.DayDetailInfoFragment">
+    tools:context=".DayDetailInfoFragment.DayDetailInfoFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/Appbar_Layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/AppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="상세 내역"
+            app:menu="@menu/top_app_bar_menu_add"
+            app:navigationIcon="@drawable/arrow_back_36px"
+            app:titleCentered="true" />
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
         android:id="@+id/day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/humanbumsuk"
         android:text="0월 0일"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/Appbar_Layout"/>
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -36,13 +54,12 @@
         android:id="@+id/money"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="20dp"
         android:fontFamily="@font/humanbumsuk"
-        android:text="지출: 원"
+        android:text="지출: 0원"
         android:textSize="30dp"
-        app:layout_constraintEnd_toEndOf="@+id/day"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/day"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -54,19 +71,5 @@
         app:layout_constraintVertical_bias="0.0"
         tools:layout_editor_absoluteX="0dp"
         tools:listitem="@layout/info_detail_recyclerview_item"/>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_account_floating_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.954"
-        app:layout_constraintStart_toStartOf="parent"
-        app:rippleColor="@color/linen"
-        app:srcCompat="@drawable/square_plus_48" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
