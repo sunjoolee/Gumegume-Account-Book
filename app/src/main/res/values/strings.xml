@@ -83,6 +83,7 @@
     <!-- account type -->
     <string name="salary">월급</string>
     <string name="allowance">용돈</string>
+
     <string name="fixed_expenses">고정지출</string>
     <string name="food">식비</string>
     <string name="transport">교통비</string>

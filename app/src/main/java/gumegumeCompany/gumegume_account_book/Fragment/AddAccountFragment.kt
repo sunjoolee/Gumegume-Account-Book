@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
@@ -30,25 +31,14 @@ class AddAccountFragment : Fragment() {
     private var _binding: FragmentAddAccountBinding? = null
     private val binding get() = _binding
 
-    private val model:AccountViewModel by viewModels()
+    //livedata
+    private val model: AccountViewModel by viewModels()
 
     //수입 하위 카테고리 TextView 목록
-    private val incomeCategoryTextviewArray = binding?.let {
-        arrayListOf<TextView>(
-            it.salaryTextview,
-            it.allowanceTextview
-        )
-    }
+    private val incomeCategoryTextviewArray = mutableListOf<TextView>()
+
     //지출 하위 카테고리 TextView 목록
-    private val expensesCategoryTextviewArray = binding?.let {
-        arrayListOf<TextView>(
-            it.fixedexpensesTextview,
-            it.foodTextview,
-            it.dailynecessityTextview,
-            it.giftTextview,
-            it.etcTextview
-        )
-    }
+    private val expensesCategoryTextviewArray = mutableListOf<TextView>()
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -58,89 +48,138 @@ class AddAccountFragment : Fragment() {
         _binding = FragmentAddAccountBinding.inflate(inflater, container, false)
         val view = binding?.root
 
-        //AccountInfo 값이 변경될 때마다 UI 업데이트
-        val accountObserver = Observer<AccountInfo>{ newAccountInfo ->
-            Log.d(TAG, newAccountInfo.toString())
-
-            binding?.let{
-                it.accountDateTextview?.text = newAccountInfo.date
-                showCategories(newAccountInfo.type, it) //타입에 맞는 하위 카테고리 보이기&숨기기
-                it.accountTitleEdittext?.setText(newAccountInfo.title)
-                it.accountContentEdittext?.setText(newAccountInfo.content)
+        // initialize textview arrays
+        binding?.let {
+            incomeCategoryTextviewArray.apply {
+                add(it.salaryTextview)
+                add(it.allowanceTextview)
+            }
+            expensesCategoryTextviewArray.apply {
+                add(it.fixedexpensesTextview)
+                add(it.foodTextview)
+                add(it.dailynecessityTextview)
+                add(it.giftTextview)
+                add(it.etcTextview)
             }
         }
-        model.accountInfo.observe(viewLifecycleOwner, accountObserver)
 
-        //내역 날짜 디폴트 값 설정
+        Log.d(TAG, model.accountInfo.value.toString()) //null
+        // initialize accountInfo.value
+        // AccountInfo(date=0000/00/00, type=수입, categoryType=월급, title=제목 없음, content=null)
+        model.accountInfo.value = AccountInfo()
+        Log.d(TAG, model.accountInfo.value.toString())
+
+        //내역 날짜 디폴트 설정
         //앱 바에서 추가하는 경우, 현재 날짜
         model.accountInfo.value?.date = LocalDate.now()
             .format(DateTimeFormatter.ofPattern("yyyy/MM/dd"))
         //TODO: day detail info fragment에서 추가하는 경우, 일일 내역의 날짜
 
-        binding?.accountDateBtn?.setOnClickListener (dateButtonOnClickListener())
+        //카테고리 & 하위 카테고리 디폴트 설정
+        changeTypeUI("income")
+        changeCategoryTypeUI("salary")
+
+        //화면 구성 요소들 onClickListener 연결
+        binding?.accountDateBtn?.setOnClickListener(dateButtonOnClickListener())
 
         binding?.incomeBtn?.setOnClickListener(typeOnClickListener())
         binding?.expensesBtn?.setOnClickListener(typeOnClickListener())
 
-        incomeCategoryTextviewArray?.let{
-            for (textview in it) {
-                textview.setOnClickListener(categoryOnClickListener())
-            }
+        for (textview in incomeCategoryTextviewArray) {
+            textview.setOnClickListener(categoryOnClickListener())
         }
-        expensesCategoryTextviewArray?.let{
-            for (textview in it) {
-                textview.setOnClickListener(categoryOnClickListener())
-            }
+        for (textview in expensesCategoryTextviewArray) {
+            textview.setOnClickListener(categoryOnClickListener())
         }
 
+        //앱바 설정
         binding?.AppBar?.setNavigationOnClickListener {
             view?.findNavController()?.navigate(R.id.action_add_accountFragment_to_homeFragment)
         }
 
         binding?.AppBar?.setOnMenuItemClickListener {
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.add_content -> {
                     // 데이터 베이스에 저장 후 HomeFragment로 이동
                 }
+
                 else -> {}
             }
             false
         }
-
-        /*
-        val newAccountInfo = AccountInfo(
-            binding!!.accountDateBtn.text.toString(),
-            accountType,
-            accountCategoryType,
-            binding!!.accountTitleEdittext.text.toString(),
-            binding!!.accountContentEdittext.text.toString()
-        )
-        //TODO: 내역 데이터베이스에 저장
-        */
-        //추가 버튼-> 데이터베이스에 저장 -> 홈 화면으로 돌아가기
-        binding?.addAccountBtn?.setOnClickListener {
-            //TODO: 내역 데이터베이스에 저장
-
-            //뒤로 돌아갈 때 action 사용하지 않고 back stack에서 불러오기
-            it.findNavController()?.popBackStack()
-        }
-
         return view
     }
 
-    private fun showCategories(accountType: String, binding: FragmentAddAccountBinding) {
-        //현재 type 수입인 경우 수입 하위 카테고리 보여주기
-        //현재 type 지출인 경우 지출 하위 카테고리 보여주기
-        var incomeVisibility: Boolean = when (accountType) {
-            resources.getString(R.string.income) -> true
-            resources.getString(R.string.expenses) -> false
-            else -> true
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        //AccountInfo 값이 변경될 때마다 UI 업데이트
+        val accountObserver = Observer<AccountInfo> { newAccountInfo ->
+            Log.d(TAG, newAccountInfo.toString())
+
+            binding?.let {
+                it.accountDateBtn?.text = newAccountInfo.date
+                changeTypeUI(newAccountInfo.type)
+                changeCategoryTypeUI(newAccountInfo.categoryType)
+                it.accountTitleEdittext?.setText(newAccountInfo.title)
+                it.accountContentEdittext?.setText(newAccountInfo.content)
+            }
         }
-        incomeCategoryTextviewArray?.let{
-            for (btn in it) { btn.isGone = incomeVisibility }
+        model.accountInfo.observe(viewLifecycleOwner, accountObserver)
+    }
+
+    private fun changeTypeUI(type: String) {
+        if(type == "income") {
+            //수입 버튼 클릭 처리
+            binding?.incomeBtn?.isSelected = true
+            binding?.expensesBtn?.isSelected = false
+
+            //수입 하위 카테고리 목록만 보여주기
+            binding?.incomeCategoryTextview?.isGone = false
+            for (textview in incomeCategoryTextviewArray) {
+                textview.isGone = false
+            }
+            binding?.expensesCategoryTextview?.isGone = true
+            for (textview in expensesCategoryTextviewArray) {
+                textview.isGone = true
+            }
+        }else{
+            //지출 버튼 클릭 처리
+            binding?.incomeBtn?.isSelected = false
+            binding?.expensesBtn?.isSelected = true
+
+            //지출 하위 카테고리 목록만 보여주기
+            binding?.incomeCategoryTextview?.isGone = true
+            for (textview in incomeCategoryTextviewArray) {
+                textview.isGone = true
+            }
+            binding?.expensesCategoryTextview?.isGone = false
+            for (textview in expensesCategoryTextviewArray) {
+                textview.isGone = false
+            }
         }
-        expensesCategoryTextviewArray?.let{
-            for (btn in it) { btn.isGone = !incomeVisibility }
+    }
+    private fun changeCategoryTypeUI(categoryType: String) {
+        val type = model.accountInfo.value?.type
+        //클릭된 하위 카테고리만 selected 되기
+        if (type == "income") {
+            for (textview in incomeCategoryTextviewArray) {
+                //모든 하위 카테고리 isSelected = false
+                textview.isSelected = false
+                //클릭된 하위 카테고리 isSelected = true
+                if (textview.text.toString() == categoryType) {
+                    textview.isSelected = true
+                }
+            }
+        } else {
+            for (textview in expensesCategoryTextviewArray) {
+                //모든 하위 카테고리 isSelected = false
+                textview.isSelected = false
+                //클릭된 하위 카테고리 isSelected = true
+                if (textview.text.toString() == categoryType) {
+                    textview.isSelected = true
+                }
+            }
         }
     }
 
@@ -155,34 +194,28 @@ class AddAccountFragment : Fragment() {
             //타입 저장
             val type = (view as Button).text.toString()
             model.accountInfo.value?.type = type
-
-            //버튼 selected 상태 toggle
-            view.isSelected = !(view.isSelected)
-
-            //수입 버튼과 지출 버튼 클릭 상태 늘 반대가 되도록 함
-            if(type == resources.getString(R.string.income)) {
-                binding!!.expensesBtn.isSelected = !(view.isSelected)
+            //타입 변경 시 하위 카테고리 디폴트 값으로 변경
+            if(type=="income"){
+                model.accountInfo.value?.categoryType = "salary"
+            }else{
+                model.accountInfo.value?.categoryType = "fixed_expenses"
             }
-            else {
-                binding!!.incomeBtn.isSelected = !(view.isSelected)
-            }
+
+            //UI 변경은 Livedata Observer에서 changeTypeUI 함수 호출하여 처리
         }
     }
+
     //하위 카테고리 선택 버튼용 OnCLickListener
     inner class categoryOnClickListener : View.OnClickListener {
         override fun onClick(view: View?) {
             //하위 카테고리 저장
-            model.accountInfo.value?.categoryType = (view as Button).text.toString()
+            val categoryType = (view as Button).text.toString()
+            model.accountInfo.value?.categoryType = categoryType
 
-            incomeCategoryTextviewArray?.let {
-                for (textview in it) { textview.isSelected = false }
-            }
-            expensesCategoryTextviewArray?.let {
-                for (textview in it) { textview.isSelected = false }
-            }
-            view.isSelected = true
+            //UI 변경은 Livedata Observer에서 changeCategoryUI 함수 호출하여 처리
         }
     }
+
     //날짜 선택용 OnCLickListener
     inner class dateButtonOnClickListener : View.OnClickListener {
         override fun onClick(view: View?) {
