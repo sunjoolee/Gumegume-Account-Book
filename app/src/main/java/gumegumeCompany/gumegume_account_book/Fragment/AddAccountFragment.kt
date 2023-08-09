@@ -77,8 +77,8 @@ class AddAccountFragment : Fragment() {
         //TODO: day detail info fragment에서 추가하는 경우, 일일 내역의 날짜
 
         //카테고리 & 하위 카테고리 디폴트 설정
-        changeTypeUI("income")
-        changeCategoryTypeUI("salary")
+        changeTypeUI("수입")
+        changeCategoryTypeUI("월급")
 
         //화면 구성 요소들 onClickListener 연결
         binding?.accountDateBtn?.setOnClickListener(dateButtonOnClickListener())
@@ -116,7 +116,7 @@ class AddAccountFragment : Fragment() {
 
         //AccountInfo 값이 변경될 때마다 UI 업데이트
         val accountObserver = Observer<AccountInfo> { newAccountInfo ->
-            Log.d(TAG, newAccountInfo.toString())
+            Log.d(TAG, "account observer: ${newAccountInfo.toString()}")
 
             binding?.let {
                 it.accountDateBtn?.text = newAccountInfo.date
@@ -133,7 +133,7 @@ class AddAccountFragment : Fragment() {
 
         Log.d(TAG, "changeTypeUI: type = ${type}")
 
-        if(type == "income") {
+        if(type == "수입") {
             //수입 버튼 클릭 처리
             binding?.incomeBtn?.isSelected = true
             binding?.expensesBtn?.isSelected = false
@@ -170,7 +170,7 @@ class AddAccountFragment : Fragment() {
         Log.d(TAG, "changeCategoryTypeUI: categoryType = ${categoryType}")
 
         //클릭된 하위 카테고리만 selected 되기
-        if (type == "income") {
+        if (type == "수입") {
             for (textview in incomeCategoryTextviewArray) {
                 //모든 하위 카테고리 isSelected = false
                 textview.isSelected = false
@@ -206,10 +206,10 @@ class AddAccountFragment : Fragment() {
             Log.d(TAG, "typeOnClickListener: type selected = ${type}")
 
             //타입 변경 시 하위 카테고리 디폴트 값으로 변경
-            if(type=="income"){
-                model.accountInfo.value?.categoryType = "salary"
+            if(type=="수입"){
+                model.accountInfo.value?.categoryType = "월급"
             }else{
-                model.accountInfo.value?.categoryType = "fixed_expenses"
+                model.accountInfo.value?.categoryType = "고정지출"
             }
 
             //UI 변경은 Livedata Observer에서 changeTypeUI 함수 호출하여 처리
