@@ -56,6 +56,7 @@ class AddAccountFragment : Fragment() {
             }
             expensesCategoryTextviewArray.apply {
                 add(it.fixedexpensesTextview)
+                add(it.transportTextview)
                 add(it.foodTextview)
                 add(it.dailynecessityTextview)
                 add(it.giftTextview)
@@ -129,19 +130,22 @@ class AddAccountFragment : Fragment() {
     }
 
     private fun changeTypeUI(type: String) {
+
+        Log.d(TAG, "changeTypeUI: type = ${type}")
+
         if(type == "income") {
             //수입 버튼 클릭 처리
             binding?.incomeBtn?.isSelected = true
             binding?.expensesBtn?.isSelected = false
 
             //수입 하위 카테고리 목록만 보여주기
-            binding?.incomeCategoryTextview?.isGone = false
+            binding?.incomeCategoryTextview?.visibility = View.VISIBLE
             for (textview in incomeCategoryTextviewArray) {
-                textview.isGone = false
+                textview.visibility = View.VISIBLE
             }
-            binding?.expensesCategoryTextview?.isGone = true
+            binding?.expensesCategoryTextview?.visibility = View.INVISIBLE
             for (textview in expensesCategoryTextviewArray) {
-                textview.isGone = true
+                textview.visibility = View.INVISIBLE
             }
         }else{
             //지출 버튼 클릭 처리
@@ -149,18 +153,22 @@ class AddAccountFragment : Fragment() {
             binding?.expensesBtn?.isSelected = true
 
             //지출 하위 카테고리 목록만 보여주기
-            binding?.incomeCategoryTextview?.isGone = true
+            binding?.incomeCategoryTextview?.visibility = View.INVISIBLE
             for (textview in incomeCategoryTextviewArray) {
-                textview.isGone = true
+                textview.visibility = View.INVISIBLE
             }
-            binding?.expensesCategoryTextview?.isGone = false
+            binding?.expensesCategoryTextview?.visibility = View.VISIBLE
             for (textview in expensesCategoryTextviewArray) {
-                textview.isGone = false
+                textview.visibility = View.VISIBLE
             }
         }
     }
     private fun changeCategoryTypeUI(categoryType: String) {
         val type = model.accountInfo.value?.type
+
+        Log.d(TAG, "changeCategoryTypeUI: type = ${type}")
+        Log.d(TAG, "changeCategoryTypeUI: categoryType = ${categoryType}")
+
         //클릭된 하위 카테고리만 selected 되기
         if (type == "income") {
             for (textview in incomeCategoryTextviewArray) {
@@ -194,6 +202,9 @@ class AddAccountFragment : Fragment() {
             //타입 저장
             val type = (view as Button).text.toString()
             model.accountInfo.value?.type = type
+
+            Log.d(TAG, "typeOnClickListener: type selected = ${type}")
+
             //타입 변경 시 하위 카테고리 디폴트 값으로 변경
             if(type=="income"){
                 model.accountInfo.value?.categoryType = "salary"
@@ -209,8 +220,10 @@ class AddAccountFragment : Fragment() {
     inner class categoryOnClickListener : View.OnClickListener {
         override fun onClick(view: View?) {
             //하위 카테고리 저장
-            val categoryType = (view as Button).text.toString()
+            val categoryType = (view as TextView).text.toString()
             model.accountInfo.value?.categoryType = categoryType
+
+            Log.d(TAG, "categoryOnClickListener: category selected = ${categoryType}")
 
             //UI 변경은 Livedata Observer에서 changeCategoryUI 함수 호출하여 처리
         }
