@@ -47,6 +47,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
+
     //navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.6.0'
     implementation 'androidx.navigation:navigation-ui-ktx:2.6.0'
@@ -61,7 +63,6 @@ dependencies {
 
     //데이터 그래픽 표현 (바 차트, 파이 차트, ...)
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
-
 
     // Import the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:32.2.0"))

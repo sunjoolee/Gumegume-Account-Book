@@ -11,10 +11,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import gumegumeCompany.gumegume_account_book.AccountData.AccountInfo
 import gumegumeCompany.gumegume_account_book.AccountData.AccountViewModel
@@ -32,11 +32,10 @@ class AddAccountFragment : Fragment() {
     private val binding get() = _binding
 
     //livedata
-    private val model: AccountViewModel by viewModels()
+    private lateinit var model: AccountViewModel
 
     //수입 하위 카테고리 TextView 목록
     private val incomeCategoryTextviewArray = mutableListOf<TextView>()
-
     //지출 하위 카테고리 TextView 목록
     private val expensesCategoryTextviewArray = mutableListOf<TextView>()
 
@@ -47,6 +46,33 @@ class AddAccountFragment : Fragment() {
     ): View? {
         _binding = FragmentAddAccountBinding.inflate(inflater, container, false)
         val view = binding?.root
+
+        // initialize accountInfo.value
+        model = ViewModelProvider(requireActivity())[AccountViewModel::class.java]
+        model.accountInfo.value = AccountInfo()
+        Log.d(TAG, "onCreateView: initiate account info = ${model.accountInfo.value.toString()}")
+        // AccountInfo(date=0000/00/00, type=수입, categoryType=월급, title=제목 없음, content=null)
+
+        //accountInfo.value 값이 변경될 때마다 UI 업데이트
+        val accountObserver = Observer<AccountInfo> { newAccountInfo ->
+            Log.d(TAG, "accountObserver: account observer is called!")
+            binding?.let {
+                Log.d(TAG, "accountObserver: newAccountInfo.date = ${newAccountInfo.date}")
+                it.accountDateBtn?.text = newAccountInfo.date
+
+                Log.d(TAG, "accountObserver: newAccountInfo.type = ${newAccountInfo.type}")
+                changeTypeUI(newAccountInfo.type)
+
+                Log.d(TAG, "accountObserver: newAccountInfo.categoryType = ${newAccountInfo.categoryType}")
+                changeCategoryTypeUI(newAccountInfo.categoryType)
+
+                Log.d(TAG, "accountObserver: newAccountInfo.title = ${newAccountInfo.title}")
+                it.accountTitleEdittext?.setText(newAccountInfo.title)
+                Log.d(TAG, "accountObserver: newAccountInfo.content = ${newAccountInfo.content}")
+                it.accountContentEdittext?.setText(newAccountInfo.content)
+            }
+        }
+        model.accountInfo.observe(viewLifecycleOwner, accountObserver)
 
         // initialize textview arrays
         binding?.let {
@@ -64,33 +90,30 @@ class AddAccountFragment : Fragment() {
             }
         }
 
-        Log.d(TAG, model.accountInfo.value.toString()) //null
-        // initialize accountInfo.value
-        // AccountInfo(date=0000/00/00, type=수입, categoryType=월급, title=제목 없음, content=null)
-        model.accountInfo.value = AccountInfo()
-        Log.d(TAG, model.accountInfo.value.toString())
-
         //내역 날짜 디폴트 설정
         //앱 바에서 추가하는 경우, 현재 날짜
-        model.accountInfo.value?.date = LocalDate.now()
+        Log.d(TAG, "onCreateView: set date to default")
+        model.accountInfo.value!!.date = LocalDate.now()
             .format(DateTimeFormatter.ofPattern("yyyy/MM/dd"))
         //TODO: day detail info fragment에서 추가하는 경우, 일일 내역의 날짜
 
         //카테고리 & 하위 카테고리 디폴트 설정
+        Log.d(TAG, "onCreateView: set type to default")
         changeTypeUI("수입")
+        Log.d(TAG, "onCreateView: set category type to default")
         changeCategoryTypeUI("월급")
 
         //화면 구성 요소들 onClickListener 연결
-        binding?.accountDateBtn?.setOnClickListener(dateButtonOnClickListener())
+        binding?.accountDateBtn?.setOnClickListener(DateButtonOnClickListener())
 
-        binding?.incomeBtn?.setOnClickListener(typeOnClickListener())
-        binding?.expensesBtn?.setOnClickListener(typeOnClickListener())
+        binding?.incomeBtn?.setOnClickListener(TypeOnClickListener())
+        binding?.expensesBtn?.setOnClickListener(TypeOnClickListener())
 
         for (textview in incomeCategoryTextviewArray) {
-            textview.setOnClickListener(categoryOnClickListener())
+            textview.setOnClickListener(CategoryOnClickListener())
         }
         for (textview in expensesCategoryTextviewArray) {
-            textview.setOnClickListener(categoryOnClickListener())
+            textview.setOnClickListener(CategoryOnClickListener())
         }
 
         //앱바 설정
@@ -103,7 +126,6 @@ class AddAccountFragment : Fragment() {
                 R.id.add_content -> {
                     // 데이터 베이스에 저장 후 HomeFragment로 이동
                 }
-
                 else -> {}
             }
             false
@@ -111,27 +133,8 @@ class AddAccountFragment : Fragment() {
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        //AccountInfo 값이 변경될 때마다 UI 업데이트
-        val accountObserver = Observer<AccountInfo> { newAccountInfo ->
-            Log.d(TAG, "account observer: ${newAccountInfo.toString()}")
-
-            binding?.let {
-                it.accountDateBtn?.text = newAccountInfo.date
-                changeTypeUI(newAccountInfo.type)
-                changeCategoryTypeUI(newAccountInfo.categoryType)
-                it.accountTitleEdittext?.setText(newAccountInfo.title)
-                it.accountContentEdittext?.setText(newAccountInfo.content)
-            }
-        }
-        model.accountInfo.observe(viewLifecycleOwner, accountObserver)
-    }
-
     private fun changeTypeUI(type: String) {
-
-        Log.d(TAG, "changeTypeUI: type = ${type}")
+        Log.d(TAG, "changeTypeUI: type={$type}")
 
         if(type == "수입") {
             //수입 버튼 클릭 처리
@@ -164,10 +167,8 @@ class AddAccountFragment : Fragment() {
         }
     }
     private fun changeCategoryTypeUI(categoryType: String) {
-        val type = model.accountInfo.value?.type
-
-        Log.d(TAG, "changeCategoryTypeUI: type = ${type}")
-        Log.d(TAG, "changeCategoryTypeUI: categoryType = ${categoryType}")
+        val type = model.accountInfo.value!!.type
+        Log.d(TAG, "changeCategoryTypeUI: type={$type}, categoryType = ${categoryType}")
 
         //클릭된 하위 카테고리만 selected 되기
         if (type == "수입") {
@@ -197,19 +198,20 @@ class AddAccountFragment : Fragment() {
     }
 
     // 타입(수입/지출) 선택용 OnClickListener
-    inner class typeOnClickListener : View.OnClickListener {
+    inner class TypeOnClickListener : View.OnClickListener {
         override fun onClick(view: View?) {
             //타입 저장
             val type = (view as Button).text.toString()
-            model.accountInfo.value?.type = type
+            model.accountInfo.value!!.type = type
 
-            Log.d(TAG, "typeOnClickListener: type selected = ${type}")
+            Log.d(TAG, "TypeOnClickListener: type selected = ${type}")
+            Log.d(TAG, "TypeOnCLickListener: accountInfo = ${model.accountInfo.value.toString()}")
 
             //타입 변경 시 하위 카테고리 디폴트 값으로 변경
             if(type=="수입"){
-                model.accountInfo.value?.categoryType = "월급"
+                model.accountInfo.value!!.categoryType = "월급"
             }else{
-                model.accountInfo.value?.categoryType = "고정지출"
+                model.accountInfo.value!!.categoryType = "고정지출"
             }
 
             //UI 변경은 Livedata Observer에서 changeTypeUI 함수 호출하여 처리
@@ -217,25 +219,29 @@ class AddAccountFragment : Fragment() {
     }
 
     //하위 카테고리 선택 버튼용 OnCLickListener
-    inner class categoryOnClickListener : View.OnClickListener {
+    inner class CategoryOnClickListener : View.OnClickListener {
         override fun onClick(view: View?) {
             //하위 카테고리 저장
             val categoryType = (view as TextView).text.toString()
-            model.accountInfo.value?.categoryType = categoryType
+            model.accountInfo.value!!.categoryType = categoryType
 
-            Log.d(TAG, "categoryOnClickListener: category selected = ${categoryType}")
+            Log.d(TAG, "CategoryOnClickListener: category selected = ${categoryType}")
+            Log.d(TAG, "CategoryOnCLickListener: accountInfo = ${model.accountInfo.value.toString()}")
 
             //UI 변경은 Livedata Observer에서 changeCategoryUI 함수 호출하여 처리
         }
     }
 
     //날짜 선택용 OnCLickListener
-    inner class dateButtonOnClickListener : View.OnClickListener {
+    inner class DateButtonOnClickListener : View.OnClickListener {
         override fun onClick(view: View?) {
+            Log.d(TAG, "DateButtonClickListener: initiate date picker dialog")
+
             //Date Picker Dialog로 내역 날짜 선택하기
             val cal = Calendar.getInstance()
             val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, month, day ->
-                model.accountInfo.value?.date = "${year}/${month + 1}/${day}"
+                Log.d(TAG, "DateButtonClickListener: picked date = ${year}/${month + 1}/${day}")
+                model.accountInfo.value!!.date = "${year}/${month + 1}/${day}"
             }
             DatePickerDialog(
                 context!!, dateSetListener,
