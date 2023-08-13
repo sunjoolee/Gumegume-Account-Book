@@ -29,7 +29,7 @@ class AddAccountFragment : Fragment() {
     private val TAG = "AddAccountFragment"
 
     private var _binding: FragmentAddAccountBinding? = null
-    private val binding get() = _binding
+    private val binding get() = _binding!!
 
     //livedata
     private lateinit var model: AccountViewModel
@@ -45,7 +45,7 @@ class AddAccountFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAddAccountBinding.inflate(inflater, container, false)
-        val view = binding?.root
+        val view = binding.root
 
         // initialize accountInfo.value
         model = ViewModelProvider(requireActivity())[AccountViewModel::class.java]
@@ -56,9 +56,9 @@ class AddAccountFragment : Fragment() {
         //accountInfo.value 값이 변경될 때마다 UI 업데이트
         val accountObserver = Observer<AccountInfo> { newAccountInfo ->
             Log.d(TAG, "accountObserver: account observer is called!")
-            binding?.let {
+            binding.apply{
                 Log.d(TAG, "accountObserver: newAccountInfo.date = ${newAccountInfo.date}")
-                it.accountDateBtn?.text = newAccountInfo.date
+                accountDateBtn.text = newAccountInfo.date
 
                 Log.d(TAG, "accountObserver: newAccountInfo.type = ${newAccountInfo.type}")
                 changeTypeUI(newAccountInfo.type)
@@ -67,27 +67,32 @@ class AddAccountFragment : Fragment() {
                 changeCategoryTypeUI(newAccountInfo.categoryType)
 
                 Log.d(TAG, "accountObserver: newAccountInfo.title = ${newAccountInfo.title}")
-                it.accountTitleEdittext?.setText(newAccountInfo.title)
+                accountTitleEdittext.setText(newAccountInfo.title)
                 Log.d(TAG, "accountObserver: newAccountInfo.content = ${newAccountInfo.content}")
-                it.accountContentEdittext?.setText(newAccountInfo.content)
+                accountContentEdittext.setText(newAccountInfo.content)
             }
         }
         model.accountInfo.observe(viewLifecycleOwner, accountObserver)
 
-        // initialize textview arrays
-        binding?.let {
+        binding.run{
+            // initialize textview arrays
             incomeCategoryTextviewArray.apply {
-                add(it.salaryTextview)
-                add(it.allowanceTextview)
+                add(salaryTextview)
+                add(allowanceTextview)
             }
             expensesCategoryTextviewArray.apply {
-                add(it.fixedexpensesTextview)
-                add(it.transportTextview)
-                add(it.foodTextview)
-                add(it.dailynecessityTextview)
-                add(it.giftTextview)
-                add(it.etcTextview)
+                add(fixedexpensesTextview)
+                add(transportTextview)
+                add(foodTextview)
+                add(dailynecessityTextview)
+                add(giftTextview)
+                add(etcTextview)
             }
+
+            //화면 구성 요소들 onClickListener 연결
+            accountDateBtn.setOnClickListener(DateButtonOnClickListener())
+            incomeBtn.setOnClickListener(TypeOnClickListener())
+            expensesBtn.setOnClickListener(TypeOnClickListener())
         }
 
         //내역 날짜 디폴트 설정
@@ -102,12 +107,6 @@ class AddAccountFragment : Fragment() {
         changeTypeUI("수입")
         Log.d(TAG, "onCreateView: set category type to default")
         changeCategoryTypeUI("월급")
-
-        //화면 구성 요소들 onClickListener 연결
-        binding?.accountDateBtn?.setOnClickListener(DateButtonOnClickListener())
-
-        binding?.incomeBtn?.setOnClickListener(TypeOnClickListener())
-        binding?.expensesBtn?.setOnClickListener(TypeOnClickListener())
 
         for (textview in incomeCategoryTextviewArray) {
             textview.setOnClickListener(CategoryOnClickListener())
@@ -138,29 +137,29 @@ class AddAccountFragment : Fragment() {
 
         if(type == "수입") {
             //수입 버튼 클릭 처리
-            binding?.incomeBtn?.isSelected = true
-            binding?.expensesBtn?.isSelected = false
+            binding.incomeBtn.isSelected = true
+            binding.expensesBtn.isSelected = false
 
             //수입 하위 카테고리 목록만 보여주기
-            binding?.incomeCategoryTextview?.visibility = View.VISIBLE
+            binding.incomeCategoryTextview.visibility = View.VISIBLE
             for (textview in incomeCategoryTextviewArray) {
                 textview.visibility = View.VISIBLE
             }
-            binding?.expensesCategoryTextview?.visibility = View.INVISIBLE
+            binding.expensesCategoryTextview.visibility = View.INVISIBLE
             for (textview in expensesCategoryTextviewArray) {
                 textview.visibility = View.INVISIBLE
             }
         }else{
             //지출 버튼 클릭 처리
-            binding?.incomeBtn?.isSelected = false
-            binding?.expensesBtn?.isSelected = true
+            binding.incomeBtn.isSelected = false
+            binding.expensesBtn.isSelected = true
 
             //지출 하위 카테고리 목록만 보여주기
-            binding?.incomeCategoryTextview?.visibility = View.INVISIBLE
+            binding.incomeCategoryTextview.visibility = View.INVISIBLE
             for (textview in incomeCategoryTextviewArray) {
                 textview.visibility = View.INVISIBLE
             }
-            binding?.expensesCategoryTextview?.visibility = View.VISIBLE
+            binding.expensesCategoryTextview.visibility = View.VISIBLE
             for (textview in expensesCategoryTextviewArray) {
                 textview.visibility = View.VISIBLE
             }
