@@ -118,9 +118,9 @@ class AddAccountFragment : Fragment() {
 
         //앱바 설정
         binding?.AppBar?.setNavigationOnClickListener {
-            view?.findNavController()?.navigate(R.id.action_add_accountFragment_to_homeFragment)
+            //뒤로 돌아갈 때 action 사용하지 않고 back stack에서 불러오기
+            it.findNavController()?.popBackStack()
         }
-
         binding?.AppBar?.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.add_content -> {
